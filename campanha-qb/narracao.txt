@@ -1,0 +1,13 @@
+s1a|O negócio caiu na véspera da escritura.
+s1b|E o risco já estava nos documentos.
+s2a|Uma informação não verificada pode comprometer a negociação inteira.
+s2b|O problema nem sempre aparece na visita: está nos registros e nos detalhes que passam despercebidos.
+s3a|Você é advogado ou corretor de imóveis?
+s3b|Não basta conduzir a negociação. É preciso saber quais riscos investigar.
+s4a|Com o curso Negociações Imobiliárias com Segurança Jurídica, da QB Group Solutions,
+s4b|você desenvolve uma visão estruturada da operação, da reserva ao registro.
+s5a|Mais critério para identificar sinais de alerta. Mais clareza para comunicar riscos.
+s6a|Não espere um problema aparecer.
+s6b|Conheça o curso Negociações Imobiliárias com Segurança Jurídica. Acesse a página e saiba mais.
+c2|Negociações Imobiliárias com Segurança Jurídica, da QB Group Solutions.
+c3|Conheça o curso. Acesse a página e saiba mais.
