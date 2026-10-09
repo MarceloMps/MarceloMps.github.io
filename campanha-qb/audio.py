@@ -382,15 +382,21 @@ def read_wav(p):
 
 
 def process_voice(x):
-    x = fft_filter(x, lo=85, hi=14000)
-    # leve presença
-    x = x + .25 * fft_filter(x, lo=2500, hi=6000)
-    # compressão simples por envelope RMS
+    """Tratamento da narração: limpeza de graves, menos "caixa" nos médios,
+    presença, controle de sibilância, compressão e um ambiente curto que
+    disfarça artefatos de voz sintetizada."""
+    x = fft_filter(x, lo=95, hi=13000)
+    x = x - .22 * fft_filter(x, lo=220, hi=480)          # corta o embolado
+    x = x + .30 * fft_filter(x, lo=2500, hi=5500)        # presença
+    s = fft_filter(x, lo=6000, hi=10000)                 # de-esser simples
+    se = np.convolve(np.abs(s), np.ones(240) / 240, 'same')
+    x = x - s * np.clip((se - .02) / .05, 0, .6)
     e = np.sqrt(np.convolve(x ** 2, np.ones(480) / 480, 'same')) + 1e-6
-    thr = .08
-    g = np.where(e > thr, (thr / e) ** .45, 1.0)
+    thr = .07
+    g = np.where(e > thr, (thr / e) ** .5, 1.0)
     g = np.convolve(g, np.ones(240) / 240, 'same')
     y = x * g
+    y = y + .09 * conv(y, reverb_ir(.45, 9, 21))       # sala curta, discreta
     return y / np.max(np.abs(y)) * .89
 
 

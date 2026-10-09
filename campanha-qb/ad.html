@@ -79,32 +79,37 @@ const V = new URLSearchParams(location.search).get('v') || 'feed';
 const W = 1080, H = V === 'feed' ? 1350 : 1920, TALL = V !== 'feed';
 
 const VOTXT = {
-  s1a:'O negócio caiu na véspera da escritura.',
-  s1b:'E o risco já estava nos documentos.',
-  s2a:'Uma informação não verificada pode comprometer a negociação inteira.',
-  s2b:'O problema nem sempre aparece na visita: está nos registros e nos detalhes que passam despercebidos.',
+  s1a:'Já imaginou? O negócio cai na véspera da escritura…',
+  s1b:'e quem é responsabilizado é você!',
+  s2a:'Uma informação não verificada pode derrubar a negociação inteira!',
+  s2b:'E o problema nem sempre aparece na visita: está nos registros, nos detalhes que passam despercebidos.',
   s3a:'Você é advogado ou corretor de imóveis?',
-  s3b:'Não basta conduzir a negociação. É preciso saber quais riscos investigar.',
+  s3b:'Não basta conduzir a negociação. É preciso saber quais riscos investigar!',
   s4a:'Com o curso Negociações Imobiliárias com Segurança Jurídica, da QB Group Solutions,',
-  s4b:'você desenvolve uma visão estruturada da operação, da reserva ao registro.',
-  s5a:'Mais critério para identificar sinais de alerta. Mais clareza para comunicar riscos.',
-  s6a:'Não espere um problema aparecer.',
-  s6b:'Conheça o curso Negociações Imobiliárias com Segurança Jurídica. Acesse a página e saiba mais.',
+  s4b:'você desenvolve uma visão estruturada da operação: da reserva ao registro!',
+  s5a:'Mais critério para identificar sinais de alerta.',
+  s5b:'Mais clareza para comunicar riscos.',
+  s5c:'E mais valor para o seu trabalho!',
+  s6a:'Não espere o problema aparecer!',
+  s6b:'Conheça o curso Negociações Imobiliárias com Segurança Jurídica. Acesse a página e saiba mais!',
   c2:'Negociações Imobiliárias com Segurança Jurídica, da QB Group Solutions.',
-  c3:'Conheça o curso. Acesse a página e saiba mais.',
+  c3:'Conheça o curso! Acesse a página e saiba mais.',
 };
-const VOD = Object.assign({s1a:2.4,s1b:2.3,s2a:4.1,s2b:6.4,s3a:2.7,s3b:5.9,s4a:5.8,s4b:4.9,s5a:6.4,s6a:1.9,s6b:7.3,c2:5.2,c3:4.2}, window.VODUR||{});
+const VOD = Object.assign({s1a:3.1,s1b:1.9,s2a:3.6,s2b:5.6,s3a:2.4,s3b:4.3,s4a:4.2,s4b:3.9,s5a:2.4,s5b:2.0,s5c:2.0,s6a:1.6,s6b:5.0,c2:3.8,c3:2.8}, window.VODUR||{});
+const VOW = window.VOWORDS||{};
+// início absoluto de cada palavra de uma fala (alinhamento real se houver; senão proporcional)
+function wordStarts(id,t0){const n=VOTXT[id].split(' ').length;return VOW[id]&&VOW[id].length===n?VOW[id].map(w=>t0+w[0]):wordTimes(VOTXT[id],t0,VOD[id])}
 const NOSUB = new Set(['s1a','s1b']);   // o gancho já é a tipografia na tela
 
 // ---------- montagem: cenas guiadas pelas falas ----------
 const PLAN = {
-  feed:[['s1',['s1a','s1b'],{pre:1.15,gap:.35,post:.45}],['s2',['s2a','s2b'],{pre:.3,gap:.3,post:.5,min:11.2}],
-        ['s3',['s3a','s3b'],{pre:.2,gap:.25,post:.45}],['s4',['s4a','s4b'],{pre:.3,gap:.25,post:1.4}],
-        ['s5',['s5a'],{pre:.3,post:.8,min:6.6}],['s6',['s6a','s6b'],{pre:.25,gap:.35,post:2.0}]],
-  story:[['s1',['s1a','s1b'],{pre:1.15,gap:.35,post:.45}],['s2',['s2a','s2b'],{pre:.3,gap:.3,post:.5,min:11.2}],
-        ['s3',['s3a'],{pre:.2,post:.6,min:3}],['s4',['s4a','s4b'],{pre:.3,gap:.25,post:1.4}],
-        ['s5',['s5a'],{pre:.3,post:.8,min:6.6}],['s6',['s6a','s6b'],{pre:.25,gap:.35,post:2.0}]],
-  short:[['s1',['s1a'],{pre:1.15,post:.6}],['s4',['c2'],{pre:.3,post:.6,min:4.8}],['s6',['c3'],{pre:.9,post:1.6,min:5.4}]],
+  feed:[['s1',['s1a','s1b'],{pre:.2,gap:0,post:.5}],['s2',['s2a','s2b'],{pre:.3,gap:0,post:.5,min:10}],
+        ['s3',['s3a','s3b'],{pre:.2,gap:0,post:.45}],['s4',['s4a','s4b'],{pre:.3,gap:0,post:1.3}],
+        ['s5',['s5a','s5b','s5c'],{pre:.3,gap:0,post:.7,min:6}],['s6',['s6a','s6b'],{pre:.25,gap:.2,post:2.0}]],
+  story:[['s1',['s1a','s1b'],{pre:.2,gap:0,post:.5}],['s2',['s2a','s2b'],{pre:.3,gap:0,post:.5,min:10}],
+        ['s3',['s3a'],{pre:.2,post:.5,min:2.8}],['s4',['s4a','s4b'],{pre:.3,gap:0,post:1.3}],
+        ['s5',['s5a','s5b','s5c'],{pre:.3,gap:0,post:.7,min:6}],['s6',['s6a','s6b'],{pre:.25,gap:.2,post:2.0}]],
+  short:[['s1',['s1a','s1b'],{pre:.2,gap:0,post:.5}],['s4',['c2'],{pre:.3,post:.6,min:4.6}],['s6',['c3'],{pre:.9,post:1.6,min:5.2}]],
 };
 const CUT={scenes:[],vo:[],dur:0}, VOT={};
 { let t=0; for(const [id,ids,o] of PLAN[V]){ let x=o.pre; const loc={};
@@ -251,28 +256,20 @@ function skyline(c,gy,a,lit,seed){const R=rng(seed);c.save();c.globalAlpha=a;let
 // ======================================================================
 //  CENA 1 — GANCHO: obra subindo → OBRA EMBARGADA
 // ======================================================================
-const s1=scene('s1',true), T1=VOT.s1, SL=T1.s1a-.3;            // instante da placa
+const s1=scene('s1',true), T1=VOT.s1, W1A=wordStarts('s1a',T1.s1a), W1B=wordStarts('s1b',T1.s1b), SL=Math.max(.9,W1A[4]);   // a placa cai na palavra "cai"
 const G1=TALL?{gy:1460,bw:440,fh:74,n:8,bx:480,ph:160,pw:600,wh:200}:{gy:1210,bw:380,fh:64,n:8,bx:450,ph:140,pw:540,wh:180};
-const hl1=$(`<div style="left:0;width:${W}px;top:${L.top}px;text-align:center;font:800 ${L.hlS}px/1.04 Poppins;color:#fff;letter-spacing:-.02em;text-shadow:0 6px 30px rgba(0,0,0,.6)"></div>`);
+const hl1=$(`<div style="left:0;width:${W}px;top:${L.top}px;text-align:center;font:800 ${TALL?100:84}px/1.04 Poppins;color:#fff;letter-spacing:-.02em;text-shadow:0 6px 30px rgba(0,0,0,.6)"></div>`);
 s1.appendChild(hl1);
-const HL1=['O NEGÓCIO CAIU','NA VÉSPERA','DA ESCRITURA.'];
-hl1.innerHTML=HL1.map(l=>`<div style="position:relative">${l.split(' ').map(w=>`<span style="position:relative;display:inline-block;margin:0 .14em">${w}</span>`).join('')}</div>`).join('');
-const hl1w=[...hl1.querySelectorAll('span')], hl1t=wordTimes(HL1.join(' '),T1.s1a,VOD.s1a);
-const ph2=$(`<div style="left:0;width:${W}px;top:${L.top+20}px;text-align:center;font:800 ${TALL?80:70}px/1.12 Poppins;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.6)">E o risco já estava<br><span class="gold">nos documentos.</span></div>`);
+const HL1=['JÁ IMAGINOU?','O NEGÓCIO CAI','NA VÉSPERA','DA ESCRITURA…'];
+hl1.innerHTML=HL1.map((l,i)=>`<div style="position:relative${i?'':';color:var(--gold)'}">${l.split(' ').map(w=>`<span style="position:relative;display:inline-block;margin:0 .14em">${w}</span>`).join('')}</div>`).join('');
+const hl1w=[...hl1.querySelectorAll('span')], hl1t=W1A;
+const ph2=$(`<div style="left:0;width:${W}px;top:${L.top+10}px;text-align:center;font:800 ${TALL?84:74}px/1.1 Poppins;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.6)">E QUEM É<br>RESPONSABILIZADO<br><span class="you" style="position:relative;display:inline-block;color:var(--red2)">É VOCÊ!</span></div>`);
 s1.appendChild(ph2);
-const docW=TALL?360:320;
-const doc1=$(`<div class="paper" style="left:${W-docW-60}px;top:${TALL?680:330}px;width:${docW}px;height:${docW*1.22}px;transform-origin:50% 50%">
-  <div class="hd">REGISTRO DE IMÓVEIS</div><div class="tt">MATRÍCULA<br>Nº 48.217</div>
-  ${[124,146,168,190].map((y,i)=>`<div class="bar" style="top:${y}px;width:${[240,200,250,170][i]}px"></div>`).join('')}
-  <div class="ln" style="top:218px;color:#8a2a26;font-weight:600">AV.3 — PENHORA</div>
-  ${[250,272].map((y,i)=>`<div class="bar" style="top:${y}px;width:${[230,160][i]}px;background:#efd5d3"></div>`).join('')}
-  <div class="hl hlx" style="left:16px;top:206px;width:${docW-32}px;height:96px"></div></div>`);
-s1.appendChild(doc1);
-if(T1.s1b!==undefined){
-  sticker('s1','Estava na matrícula!',W-docW/2-90,(TALL?680:330)+docW*1.22+20,-5,'gold',T1.s1b+.5);
-}
+const you=ph2.querySelector('.you');
+sticker('s1','VOCÊ?!',TALL?250:230,TALL?760:560,-8,'red',W1B.at(-1)+.05);
+sticker('s1','Indenização?',TALL?830:840,TALL?820:600,7,'white',W1B.at(-1)+.35);
 sticker('s1','✓ Obra no prazo',TALL?300:270,TALL?760:560,-6,'ok',.2,SL-.05);
-const O1=T1.s1b!==undefined?T1.s1b-.3:undefined;
+const O1=T1.s1b-.25;
 sticker('s1','EMBARGO!',TALL?830:830,TALL?840:560,8,'red',SL+.12,O1);
 sticker('s1','Alvará?',TALL?190:170,TALL?960:700,-9,'white',SL+.45,O1);
 sticker('s1','Multa ⚠',TALL?870:860,TALL?1040:760,6,'red',SL+.75,O1);
@@ -284,9 +281,10 @@ function S1(lt,dur){
   building(c,G.bx,G.gy,G.bw,G.fh,G.n,prog,lit);
   // operários
   const ang=lt>SL;const ws=[[TALL?110:100,0],[TALL?225:205,1],[TALL?970:975,2]];
+  if(lt>T1.s1b-.2){c.save();c.globalAlpha=.55*rp(lt,T1.s1b-.2,T1.s1b+.2);c.fillStyle=COL.navy2;c.fillRect(0,0,W,H);c.restore()}
   ws.forEach(([x,i])=>{const ham=Math.sin(lt*16+i*2);
     person(c,x,G.gy,G.wh,{type:'worker',flip:i==2,skin:['#e2b48f','#b07a52','#8d5a3b'][i],
-      aR:ang?2.7+.2*Math.sin(lt*9+i):1.3+.5*ham, aL:ang?2.5+.2*Math.sin(lt*8+i):.3, mood:ang?'angry':'happy', bob:ang?Math.abs(Math.sin(lt*9+i))*6:0})});
+      aR:lt>W1B[0]?1.55+.08*Math.sin(lt*10+i):ang?2.7+.2*Math.sin(lt*9+i):1.3+.5*ham, aL:lt>W1B[0]?.2:ang?2.5+.2*Math.sin(lt*8+i):.3, mood:ang?'angry':'happy', bob:ang?Math.abs(Math.sin(lt*9+i))*6:0})});
   // placa caindo
   if(lt>SL-.25){const p=eb(rp(lt,SL-.25,SL+.12)),sw=6*Math.exp(-3*(lt-SL))*Math.sin(10*(lt-SL));
     const cy=lerp(-300,G.gy-G.n*G.fh*.66,p);
@@ -295,13 +293,11 @@ function S1(lt,dur){
   bubble(c,ws[0][0]-30,G.gy-G.wh-(TALL?150:130),'Embargaram a obra?!',rp(lt,SL+.45,SL+.75),{ax:.15});
   bubble(c,ws[2][0]-10,G.gy-G.wh-(TALL?40:34),'Parou tudo!',rp(lt,SL+1.0,SL+1.3),{ax:.8});
   // manchete
-  const hOut=T1.s1b!==undefined?rp(lt,T1.s1b-.35,T1.s1b-.05):0;
-  hl1w.forEach((w,i)=>{const p=eb(rp(lt,hl1t[i]-.04,hl1t[i]+.22));put(w,{y:lerp(40,0,p),o:cl(p*1.4),s:lerp(.85,1,p)});});
+  const hOut=rp(lt,T1.s1b-.3,T1.s1b-.05);
+  hl1w.forEach((w,i)=>{const p=eb(rp(lt,hl1t[i]-.04,hl1t[i]+.22));put(w,{y:lerp(40,0,p),o:cl(p*1.4),s:lerp(.85,1,p)*(1+.12*pulse(lt,hl1t[i],.35)*(i===4?2:i<2?1:0))});});
   put(hl1,{o:1-hOut,y:-30*hOut});
-  if(T1.s1b!==undefined){const pp=eo(rp(lt,T1.s1b-.1,T1.s1b+.3));put(ph2,{y:lerp(30,0,pp),o:pp});
-    const dp=eb(rp(lt,T1.s1b+.1,T1.s1b+.5));put(doc1,{x:lerp(420,0,eo(rp(lt,T1.s1b+.1,T1.s1b+.5))),r:lerp(20,4,dp),o:cl(dp*2)});
-    doc1.querySelector('.hlx').style.opacity=rp(lt,T1.s1b+.5,T1.s1b+.6)*(.7+.3*Math.sin(lt*14));}
-  else{ph2.style.opacity=0;doc1.style.opacity=0}
+  const pp=eo(rp(lt,T1.s1b-.1,T1.s1b+.25));put(ph2,{y:lerp(30,0,pp),o:pp});
+  const yp=eb(rp(lt,W1B.at(-2)-.05,W1B.at(-2)+.3));put(you,{s:lerp(.4,1,yp)*(1+.08*Math.sin(Math.max(0,lt-W1B.at(-2))*14)*Math.exp(-2*Math.max(0,lt-W1B.at(-2)))),o:cl(yp*2)});
   stickers('s1',lt);
 }
 
@@ -525,7 +521,8 @@ function S5(lt,dur){
   const R=rng(9);for(let k=0;k<40;k++){const p=rp(lt,.3+R()*.4,2.6+R()*1.2);if(p<=0||p>=1){R();R();continue}
     const x=W*(.4+R()*.55)+Math.sin(lt*3+k)*16, y=gy-G5.ph*1.8+p*G5.ph*1.9;c.fillStyle=k%3?COL.gold:COL.ink;c.save();c.translate(x,y);c.rotate(lt*4+k);c.fillRect(-5,-3,10,6);c.restore()}
   put(bh,{x:(W-bh.offsetWidth)/2,o:eo(rp(lt,.0,.4))});
-  bens.forEach((e,i)=>{const t0=.2+i*(Math.min(1.05,(dur-1.4)/4)), p=eo(rp(lt,t0,t0+.5));
+  const T5=VOT.s5, BT=[T5.s5a-.1,T5.s5a+VOD.s5a*.5,T5.s5b-.1,T5.s5c-.1];
+  bens.forEach((e,i)=>{const t0=BT[i], p=eo(rp(lt,t0,t0+.45));
     put(e,{x:lerp(i%2?160:-160,0,p),o:p,blur:(1-p)*8});
     const ic=e.querySelector('.ic'); const ip=eb(rp(lt,t0+.25,t0+.6)); ic.style.transform=`scale(${ip})`;
     ic.style.boxShadow=`0 0 ${30*rp(lt,t0+.3,t0+.5)*(1-rp(lt,t0+.6,t0+1.4))}px rgba(203,162,54,.7)`;
@@ -623,9 +620,9 @@ CUT.vo.forEach(([id,t0])=>{ if(NOSUB.has(id)) return;
       if(k<n&&acc>=k*c.length/n&&j<ws.length-1){parts.push(cur.join(' '));cur=[];k++}});if(cur.length)parts.push(cur.join(' '))});
   const merged=[];parts.forEach(pt=>{const l=merged.at(-1);if(l&&(l.length<13||pt.length<10)&&(l+' '+pt).length<=max+4)merged[merged.length-1]=l+' '+pt;else merged.push(pt)});
   merged.forEach(m=>chunks.push(m.split(' ')));
-  const tot=txt.length;let acc=0;
-  chunks.forEach(c=>{const s=c.join(' ');const a=t0+d*acc/tot;acc+=s.length+1;const b=t0+d*Math.min(1,acc/tot);
-    CAPS.push({a,b,words:c,wt:wordTimes(s,a,b-a)})});
+  const ws=wordStarts(id,t0);let k=0;
+  chunks.forEach((c,ci)=>{const wt=ws.slice(k,k+c.length);k+=c.length;const b=k<ws.length?ws[k]:t0+d;
+    CAPS.push({a:wt[0],b,words:c,wt})});
 });
 CAPS.forEach((c,i)=>{ if(CAPS[i+1]&&CAPS[i+1].a-c.b<.5) c.b=CAPS[i+1].a; else c.b+=.25; });
 let lastCap=-1;
@@ -694,13 +691,13 @@ function cues(){
   const s1=sStart('s1');
   for(let x=.08;x<SL-.1;x+=.19)add('hammer',s1+x);
   add('whoosh',SLAM-.3,.7);add('slam',SLAM);add('buzz',SLAM+.15);add('tape',SLAM+.28);
-  if(T1.s1b!==undefined)add('paper',s1+T1.s1b+.1);
+  add('slam',s1+W1B.at(-2),.45);add('buzz',s1+W1B.at(-2)+.05,.6);
   CUT.scenes.forEach(([id,a],i)=>{if(i>0)add('whoosh',a-.05)});
   const s2=sStart('s2'); if(s2!==null){for(let i=0;i<4;i++){const t0=s2+t2(i);if(i)add('swish',t0-.35);
     add(['flip','engine','buzz','tear'][i],t0+F2);add('buzz',t0+F2+.12,.7)}}
   const s4=sStart('s4'); if(s4!==null){add('riser',s4-1.6);add('impact_soft',s4);add('shimmer',s4+.4);add('clang',s4+RS-.1,.6);add('success',s4+RS+.5);
     if(FL<90) for(let i=0;i<5;i++) add('tick',s4+FL+.25+i*.62+.5);}
-  const s5=sStart('s5'); if(s5!==null){const d=CUT.scenes.find(s=>s[0]==='s5');add('success',s5+.5);for(let i=0;i<4;i++)add('chime',s5+.2+i*Math.min(1.05,(d[2]-d[1]-1.4)/4)+.25,i)}
+  const s5=sStart('s5'); if(s5!==null){const d=CUT.scenes.find(s=>s[0]==='s5');const T5=VOT.s5;[T5.s5a-.1,T5.s5a+VOD.s5a*.5,T5.s5b-.1,T5.s5c-.1].forEach((x,i)=>add('chime',s5+x+.2,i));add('success',s5+T5.s5c+.3)}
   const s6=sStart('s6'); if(s6!==null){if(V!=='short')for(let i=0;i<3;i++)add('check',s6+.25+i*.4);
     add('impact_final',s6+A6);add('shimmer',s6+A6+.5);add('click',s6+A6+(V==='short'?2.9:3.7));}
   for(const s of STK){const st=sStart(s.sc);if(st!==null)add('pop',st+s.t+.02,.8)}

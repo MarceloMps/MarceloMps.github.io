@@ -8,6 +8,9 @@ mkdir -p assets vo out
 LOGO=https://qbgroupsolutions.lovable.app/__l5e/assets-v1/a78a23e4-75fd-41ff-a553-944fcda668b3/logo_w.png
 [ -s assets/logo_w.png ] || curl -sfL -o assets/logo_w.png "$LOGO"
 
+# tomadas por cena (takes/*.wav) -> falas alinhadas por palavra
+[ -d takes ] && python3 vo_split.py
+
 while IFS='|' read -r id txt; do
   [ -z "$id" ] && continue
   if [ ! -s "vo/$id.wav" ]; then
@@ -17,7 +20,7 @@ while IFS='|' read -r id txt; do
 done < narracao.txt
 
 # duração real de cada fala -> linha do tempo de ad.html
-python3 - <<'PY'
+[ -f vo_durations.js ] || python3 - <<'PY'
 import glob, json, os, wave
 d = {}
 for f in sorted(glob.glob("vo/*.wav")):
