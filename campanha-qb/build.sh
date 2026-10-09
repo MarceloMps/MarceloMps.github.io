@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Gera os vídeos finais: narração (edge-tts, pt-BR-AntonioNeural), quadros (Playwright),
+# Gera os vídeos finais: narração (vo/<id>.wav; se faltar, edge-tts pt-BR-AntonioNeural), quadros (Playwright),
 # trilha/efeitos/mixagem (audio.py) e mux com loudness para redes sociais (-14 LUFS).
 # Requisitos: node + playwright, python3 + numpy, ffmpeg, edge-tts (pip), acesso à internet.
 set -euo pipefail
@@ -16,11 +16,21 @@ while IFS='|' read -r id txt; do
   fi
 done < narracao.txt
 
+# duração real de cada fala -> linha do tempo de ad.html
+python3 - <<'PY'
+import glob, json, os, wave
+d = {}
+for f in sorted(glob.glob("vo/*.wav")):
+    with wave.open(f) as w: d[os.path.basename(f)[:-4]] = round(w.getnframes() / w.getframerate(), 3)
+open("vo_durations.js", "w").write("window.VODUR=" + json.dumps(d) + ";\n")
+print("vo_durations.js:", d)
+PY
+
 VERSIONS=${VERSIONS:-"feed story short"}
 for v in $VERSIONS; do node render.js "$v" "out/$v.mp4" > "out/$v.log" 2>&1 & done
 wait
 
-declare -A NAME=([feed]="QB_feed_4x5_1080x1350" [story]="QB_stories_reels_9x16_1080x1920" [short]="QB_stories_reels_15s_9x16_1080x1920")
+declare -A NAME=([feed]="QB_feed_4x5_1080x1350" [story]="QB_stories_reels_9x16_1080x1920" [short]="QB_stories_reels_curto_9x16_1080x1920")
 for v in $VERSIONS; do
   python3 - "$v" <<'PY'
 import json, sys, wave

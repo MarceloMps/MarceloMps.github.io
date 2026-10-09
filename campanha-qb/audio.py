@@ -200,6 +200,66 @@ def sfx_click():
     return x / np.max(np.abs(x))
 
 
+def metal(fr=420, d=.9, decay=4.0):
+    t = T(d)
+    x = sum(a * np.sin(2 * np.pi * fr * m * t) * np.exp(-t * decay * k) for m, a, k in
+            [(1, 1, 1), (2.76, .6, 1.4), (5.4, .4, 2), (8.9, .25, 2.8)])
+    x += fft_filter(rs.randn(len(t)), lo=2000) * np.exp(-t * 60) * .5
+    return x / np.max(np.abs(x))
+
+
+def sfx_hammer():
+    return metal(780, .35, 14)
+
+
+def sfx_slam():
+    a = sfx_impact(1.2)
+    b = metal(260, 1.6, 2.5)
+    n = max(len(a), len(b))
+    x = np.zeros(n)
+    x[:len(a)] += a
+    x[:len(b)] += .55 * b
+    return x / np.max(np.abs(x))
+
+
+def sfx_buzz():
+    out = np.zeros(int(.7 * SR))
+    for k, fr in enumerate((196, 147)):
+        t = T(.26)
+        sq = np.sign(np.sin(2 * np.pi * fr * t)) + .5 * np.sign(np.sin(2 * np.pi * fr * 1.01 * t))
+        x = fft_filter(sq, hi=2500) * env(len(t), .005, .26, 1.5)
+        i = int(k * .27 * SR)
+        out[i:i + len(x)] += x
+    return out / np.max(np.abs(out))
+
+
+def sfx_tear():
+    t = T(.55)
+    nz = fft_filter(rs.randn(len(t)), lo=900, hi=7000)
+    crack = (rs.rand(len(t)) < .004).astype(float)
+    crack = np.convolve(crack, np.exp(-np.arange(200) / 30), 'same')
+    x = (nz * .6 + crack * fft_filter(rs.randn(len(t)), lo=1500)) * env(len(t), .02, .5, 2)
+    return x / np.max(np.abs(x))
+
+
+def sfx_engine():
+    t = T(1.1)
+    f = 55 * np.exp(-t * 1.6) + 18
+    x = np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)) * np.exp(-t * 2)
+    x = fft_filter(x, hi=900) + fft_filter(rs.randn(len(t)), hi=600) * np.exp(-t * 3) * .4
+    return x / np.max(np.abs(x))
+
+
+def sfx_success():
+    out = np.zeros(int(2.2 * SR))
+    for k, n in enumerate((74, 78, 81, 86)):
+        b = bell(nf(n), 1.6)
+        i = int(k * .09 * SR)
+        out[i:i + len(b)] += b[:len(out) - i] * (.8 + .1 * k)
+    out = out + .4 * conv(out, reverb_ir(1.4, 3, 8))
+    return out / np.max(np.abs(out))
+
+
 # ---------------------------------------------------------------- música
 def saw(fr, t, det=0.0):
     ph = (fr * (1 + det) * t) % 1.0
@@ -359,7 +419,10 @@ def main(meta_p, vo_dir, out):
         'alert': (sfx_beep(880, 2), .13, .15), 'stamp': (sfx_stamp(), .50, 0), 'paper': (sfx_paper(), .22, -.2),
         'whoosh': (sfx_whoosh(), .30, 0), 'swish': (sfx_whoosh(.45, 400, 6000), .20, .3), 'scan': (sfx_scan(), .07, 0),
         'beep': (sfx_beep(1046, 1, .1, .07), .08, .2), 'pop': (sfx_pop(), .16, -.25), 'tick': (sfx_tick(), .14, 0),
-        'riser': (sfx_riser(), .26, 0), 'impact_soft': (sfx_impact(.6), .45, 0), 'shimmer': (sfx_shimmer(), .16, 0),
+        'riser': (sfx_riser(), .26, 0), 'hammer': (sfx_hammer(), .10, -.3), 'slam': (sfx_slam(), 1.0, 0),
+        'buzz': (sfx_buzz(), .16, 0), 'tape': (sfx_whoosh(.35, 1500, 8000), .14, .2), 'flip': (sfx_whoosh(.3, 600, 5000), .25, .3),
+        'engine': (sfx_engine(), .35, -.2), 'tear': (sfx_tear(), .40, 0), 'clang': (metal(330, 1.2, 3), .35, -.2),
+        'success': (sfx_success(), .22, 0), 'impact_soft': (sfx_impact(.6), .45, 0), 'shimmer': (sfx_shimmer(), .16, 0),
         'check': (bell(nf(86), .6), .12, .1), 'impact_final': (sfx_impact(1.3), 1.0, 0), 'click': (sfx_click(), .25, 0),
     }
     chimes = [bell(nf(n), 1.4) for n in (74, 78, 81, 86)]
