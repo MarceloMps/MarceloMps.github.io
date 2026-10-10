@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>QB Group — Campanha Negociações Imobiliárias</title>
+<title>QB Group — Campanha Manual de Due Diligence Imobiliária</title>
 <style>
 @font-face{font-family:Poppins;font-weight:400;src:url(fonts/poppins-latin-400-normal.woff2) format('woff2')}
 @font-face{font-family:Poppins;font-weight:500;src:url(fonts/poppins-latin-500-normal.woff2) format('woff2')}
@@ -85,15 +85,15 @@ const VOTXT = {
   s2b:'E o problema nem sempre aparece na visita: está nos registros, nos detalhes que passam despercebidos.',
   s3a:'Você é advogado ou corretor de imóveis?',
   s3b:'Não basta conduzir a negociação. É preciso saber quais riscos investigar!',
-  s4a:'Com o curso Negociações Imobiliárias com Segurança Jurídica, da QB Group Solutions,',
-  s4b:'você desenvolve uma visão estruturada da operação: da reserva ao registro!',
+  s4a:'Com o Manual de Due Diligence Imobiliária, da QB Group,',
+  s4b:'você tem o roteiro completo: o que investigar, em que ordem, e com qual documento!',
   s5a:'Mais critério para identificar sinais de alerta.',
   s5b:'Mais clareza para comunicar riscos.',
   s5c:'E mais valor para o seu trabalho!',
   s6a:'Não espere o problema aparecer!',
-  s6b:'Conheça o curso Negociações Imobiliárias com Segurança Jurídica. Acesse a página e saiba mais!',
-  c2:'Negociações Imobiliárias com Segurança Jurídica, da QB Group Solutions.',
-  c3:'Conheça o curso! Acesse a página e saiba mais.',
+  s6b:'Garanta o Manual de Due Diligence Imobiliária. Acesse a página e saiba mais!',
+  c2:'Manual de Due Diligence Imobiliária, da QB Group.',
+  c3:'Garanta o seu! Acesse a página e saiba mais.',
 };
 const VOD = Object.assign({s1a:3.1,s1b:1.9,s2a:3.6,s2b:5.6,s3a:2.4,s3b:4.3,s4a:4.2,s4b:3.9,s5a:2.4,s5b:2.0,s5c:2.0,s6a:1.6,s6b:5.0,c2:3.8,c3:2.8}, window.VODUR||{});
 const VOW = window.VOWORDS||{};
@@ -421,30 +421,30 @@ function S3(lt,dur){
 }
 
 // ======================================================================
-//  CENA 4 — A SOLUÇÃO: o curso e tudo sendo resolvido
+//  CENA 4 — A SOLUÇÃO: o manual e tudo sendo resolvido
 // ======================================================================
 const s4=scene('s4',true), T4=VOT.s4, D4=CUT.scenes.find(s=>s[0]==='s4'), d4=D4[2]-D4[1];
 const FL = T4.s4b!==undefined ? T4.s4b-.35 : 99;      // início do fluxo de etapas
 const RS = 1.7;                                        // instante da resolução
 const G4=TALL?{gy:1400,bw:330,fh:52,n:8,bx:540}:{gy:1120,bw:300,fh:42,n:8,bx:540};
 const titleY = TALL? 360 : 150;
-const chip=$(`<div class="chip" style="left:0;top:${titleY-90}px">● CURSO · QB GROUP SOLUTIONS</div>`);
+const chip=$(`<div class="chip" style="left:0;top:${titleY-90}px">● MANUAL · ROTEIRO · 9 MODELOS EDITÁVEIS</div>`);
 const title=$(`<div style="left:0;width:${W}px;top:${titleY}px;text-align:center;font:800 ${TALL?96:84}px/1.04 Poppins;color:#fff;letter-spacing:-.02em;transform-origin:50% 0;text-shadow:0 6px 30px rgba(0,0,0,.6)">
-  <div style="position:relative">NEGOCIAÇÕES</div><div style="position:relative">IMOBILIÁRIAS</div>
-  <div style="position:relative" class="gold">COM SEGURANÇA</div><div style="position:relative" class="gold">JURÍDICA</div></div>`);
-const tline=$(`<div style="left:${(W-160)/2}px;top:${titleY+(TALL?420:372)}px;width:160px;height:5px;background:var(--gold);transform-origin:50% 50%"></div>`);
-const tsub=$(`<div style="left:0;width:${W}px;top:${titleY+(TALL?450:396)}px;text-align:center;font:italic 400 ${TALL?40:36}px Lora;color:var(--ink)">da reserva ao registro</div>`);
+  <div style="position:relative">MANUAL DE</div><div style="position:relative" class="gold">DUE DILIGENCE</div>
+  <div style="position:relative">IMOBILIÁRIA</div></div>`);
+const tline=$(`<div style="left:${(W-160)/2}px;top:${titleY+(TALL?330:292)}px;width:160px;height:5px;background:var(--gold);transform-origin:50% 50%"></div>`);
+const tsub=$(`<div style="left:0;width:${W}px;top:${titleY+(TALL?360:316)}px;text-align:center;font:italic 400 ${TALL?38:34}px Lora;color:var(--ink)">o que investigar, em que ordem<br>e com qual documento</div>`);
 s4.append(chip,title,tline,tsub);
-const STEPS=['Análise da documentação','Identificação de riscos','Avaliação dos pontos de atenção','Planejamento da negociação','Formalização contratual'];
+const STEPS=['Manual em 8 módulos · 55 páginas','Roteiro operacional em 5 fases','Parecer, laudo e relatório executivo','Checklists em 7 abas (Excel)','Kit de minutas e banco de cláusulas'];
 const flowTop=TALL?560:300, flowGap=TALL?150:138, SW=TALL?920:900;
 const steps=STEPS.map((s,i)=>{const e=$(`<div class="step" style="left:${(W-SW)/2}px;top:${flowTop+i*flowGap}px;width:${SW}px;height:${TALL?122:112}px">
   <div class="n" style="left:24px;top:${TALL?28:23}px">${i+1}</div><div class="l" style="left:116px;top:${TALL?36:31}px">${s}</div>
   <div class="ck" style="right:28px;top:${TALL?39:34}px">✓</div></div>`);s4.appendChild(e);return e});
 const rail=$(`<div style="left:${(W-SW)/2+56}px;top:${flowTop+50}px;width:3px;height:${flowGap*4}px;background:linear-gradient(var(--gold),var(--gold3));transform-origin:50% 0"></div>`);
 s4.insertBefore(rail,steps[0]);
-const ends=$(`<div style="left:0;width:${W}px;top:${flowTop-(TALL?120:105)}px;text-align:center;font:700 ${TALL?30:26}px Poppins;letter-spacing:.28em;color:var(--gold)">DA RESERVA <span style="color:#fff">→</span> AO REGISTRO</div>`);
+const ends=$(`<div style="left:0;width:${W}px;top:${flowTop-(TALL?120:105)}px;text-align:center;font:700 ${TALL?30:26}px Poppins;letter-spacing:.28em;color:var(--gold)">O QUE VOCÊ RECEBE</div>`);
 s4.appendChild(ends);
-const miniT=$(`<div style="left:0;width:${W}px;top:${TALL?250:70}px;text-align:center;font:800 ${TALL?46:40}px/1.15 Poppins;color:#fff">Negociações Imobiliárias<br><span class="gold">com Segurança Jurídica</span></div>`);
+const miniT=$(`<div style="left:0;width:${W}px;top:${TALL?250:70}px;text-align:center;font:800 ${TALL?46:40}px/1.15 Poppins;color:#fff">Manual de<br><span class="gold">Due Diligence Imobiliária</span></div>`);
 s4.appendChild(miniT);
 sticker('s4','✓ Regularizado',TALL?250:230,G4.gy-(TALL?470:380),-7,'gold',RS+.55,FL-.2);
 sticker('s4','✓ Risco mapeado',TALL?840:850,G4.gy-(TALL?330:270),6,'ok',RS+.95,FL-.2);
@@ -559,18 +559,18 @@ const cta=$(`<div style="left:0;width:${W}px;top:${ctaY}px;text-align:center;fon
   <div style="position:relative">NEGOCIE IMÓVEIS</div><div style="position:relative">COM MAIS</div><div style="position:relative" class="gold">SEGURANÇA JURÍDICA.</div></div>`);
 s6.appendChild(cta);
 const subY=ctaY+(TALL?3*87+40:3*76+30);
-const sub6=$(`<div style="left:0;width:${W}px;top:${subY}px;text-align:center;font:400 ${TALL?40:36}px Lora;color:var(--ink)">Conheça o curso da QB Group Solutions.</div>`);
+const sub6=$(`<div style="left:0;width:${W}px;top:${subY}px;text-align:center;font:400 ${TALL?40:36}px Lora;color:var(--ink)">Conheça o Manual de Due Diligence Imobiliária.</div>`);
 s6.appendChild(sub6);
 const BTW=TALL?640:600, BTH=TALL?122:110, btnY=subY+(TALL?100:85);
-const btn=$(`<div class="btn" style="left:${(W-BTW)/2}px;top:${btnY}px;width:${BTW}px;height:${BTH}px;line-height:${BTH}px">CONHEÇA O CURSO →</div>`);
+const btn=$(`<div class="btn" style="left:${(W-BTW)/2}px;top:${btnY}px;width:${BTW}px;height:${BTH}px;line-height:${BTH}px">QUERO O MANUAL →</div>`);
 s6.appendChild(btn);
 const ripple=$(`<div style="left:${W/2+150}px;top:${btnY+BTH/2}px;width:0;height:0"><div style="left:-60px;top:-60px;width:120px;height:120px;border-radius:50%;border:4px solid #fff"></div></div>`);
 s6.appendChild(ripple);
 const url=$(`<div style="left:0;width:${W}px;top:${btnY+BTH+(TALL?50:36)}px;text-align:center;font:500 ${TALL?34:30}px Poppins;color:var(--gold2);letter-spacing:.02em">qbgroupsolutions.lovable.app</div>`);
 s6.appendChild(url);
 const uy=btnY+BTH+(TALL?165:140);
-sticker('s6','Advogados',TALL?260:250,uy,-7,'gold',A6+2.3);
-sticker('s6','Corretores',TALL?820:830,uy,7,'gold',A6+2.5);
+sticker('s6','Pagamento único R$ 47',TALL?270:260,uy,-6,'gold',A6+2.3);
+sticker('s6','7 dias de garantia',TALL?820:830,uy+(TALL?20:16),6,'ok',A6+2.5);
 
 const WALLS=[[0,0,14,0],[14,0,14,10],[14,10,0,10],[0,10,0,0],[5,0,5,4],[5,5.2,5,10],[0,4,3.6,4],[9,0,9,6],[9,7.2,9,10],[5,6,8,6],[9,6,14,6],[11.5,6,11.5,10],[0,7,1.4,7],[2.6,7,5,7]];
 const ROOMS=[['SALA',2.5,2],['COZINHA',7,2.6],['SUÍTE',11.5,3],['QUARTO',2.5,8.5],['BANHO',10.2,8.2],['VARANDA',7,8.6]];
