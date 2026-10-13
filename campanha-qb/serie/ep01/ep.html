@@ -75,9 +75,9 @@ c3|Siga para mais casos como este.`.split('\n').forEach(l=>{const [k,v]=l.split(
 const ORDER=['a1','a2','a3','a4','a5','a6','a7','r1','b1','b2','b3','b4','b5','c1','c2','c3'];
 const VOD=Object.assign({},...ORDER.map(k=>({[k]:VOTXT[k].split(' ').length*.36+.4})),window.VODUR||{});
 const VOW=window.VOWORDS||{};
-const GAP={a1:.6,a2:.3,a3:.3,a4:.45,a5:.15,a6:.4,a7:.2,r1:.6,b1:1.1,b2:.35,b3:.3,b4:.4,b5:.4,c1:.7,c2:.35,c3:.35};
+const GAP={a1:.4,a2:.15,a3:.15,a4:.25,a5:.1,a6:.25,a7:.1,r1:.4,b1:.8,b2:.2,b3:.15,b4:.25,b5:.25,c1:.45,c2:.2,c3:.2};
 const T={};let t0=0;ORDER.forEach(k=>{t0+=GAP[k];T[k]=t0;t0+=VOD[k]});
-const DUR=+(t0+2.2).toFixed(2), SHIFT=T.r1;
+const DUR=+(t0+1.8).toFixed(2), SHIFT=T.r1;
 const E=k=>T[k]+VOD[k];
 
 // ---------- utilidades ----------

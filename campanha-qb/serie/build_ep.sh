@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Gera um episódio da série: narração gratuita (edge-tts, pt-BR-ThalitaMultilingualNeural),
+# Gera um episódio da série: narração gratuita (edge-tts, pt-BR-AntonioNeural),
 # alinhamento por palavra, quadros, trilha/efeitos e mux.  Uso: bash build_ep.sh ep01
 set -euo pipefail
 cd "$(dirname "$0")/$1"
 mkdir -p takes assets out
-VOICE=${VOICE:-pt-BR-ThalitaMultilingualNeural}; RATE=${RATE:-+6%}
+VOICE=${VOICE:-pt-BR-AntonioNeural}; RATE=${RATE:-+14%}
 while IFS='|' read -r id txt; do
   [ -z "$id" ] && continue
   [ -s "takes/$id.wav" ] && continue
