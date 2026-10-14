@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Série QB · Capa</title>
+<style>
+@font-face{font-family:Poppins;font-weight:500;src:url(../../fonts/poppins-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:700;src:url(../../fonts/poppins-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:800;src:url(../../fonts/poppins-latin-800-normal.woff2) format('woff2')}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+/* 1080x1920; o grid do perfil recorta o centro 3:4 (y 240–1680): tudo que importa fica no painel */
+#c{position:relative;width:1080px;height:1920px;background:#fff;font-family:Poppins,sans-serif;overflow:hidden}
+.top{position:absolute;left:0;right:0;top:110px;text-align:center}
+.top .nm{font:700 36px Poppins;color:#111}.top .hd{font:500 28px Poppins;color:#7a7f87;margin-top:6px}
+.panel{position:absolute;left:40px;top:270px;width:1000px;height:1380px;border-radius:48px;overflow:hidden;background:radial-gradient(120% 70% at 50% 30%,#1f2f47,#070f1c)}
+.panel img{position:absolute;left:0;bottom:-20px;width:1000px}
+.panel .fade{position:absolute;left:0;right:0;top:0;height:900px;background:linear-gradient(#0b1628 0%,#0b1628 55%,rgba(11,22,40,0) 100%)}
+.chip{position:absolute;left:70px;top:70px;border:2px solid #cba236;color:#cba236;border-radius:999px;padding:12px 26px;font:700 26px Poppins;letter-spacing:.2em;background:rgba(203,162,54,.12)}
+h1{position:absolute;left:70px;right:70px;top:160px;font:800 88px/1.08 Poppins;color:#fff;letter-spacing:-.01em}
+h1 em{font-style:normal;color:#cba236}
+.sub{position:absolute;left:70px;right:70px;font:500 42px/1.3 Poppins;color:#c8d2e0}
+.stk{position:absolute;font:800 46px/1 Poppins;padding:18px 32px 17px;border-radius:18px;border:6px solid #fff;white-space:nowrap;box-shadow:0 16px 34px rgba(0,0,0,.5);background:#d0524b;color:#fff;transform:rotate(-5deg)}
+.bot{position:absolute;left:0;right:0;top:1700px;text-align:center;font:700 26px Poppins;letter-spacing:.25em;color:#9aa3ad}
+</style>
+</head>
+<body>
+<div id="c">
+  <div class="top"><div class="nm">Quetilin Baesso | Advocacia</div><div class="hd">@quetilinbaessoadv</div></div>
+  <div class="panel"><img id="cena" alt=""><div class="fade"></div>
+    <div class="chip" id="chip"></div><h1 id="t"></h1><div class="sub" id="s"></div><div class="stk" id="k"></div></div>
+  <div class="bot">SÉRIE CASO REAL</div>
+</div>
+<script>
+const EPS={
+  ep01:{k:'Financiamento negado ✕',kx:230,ky:640,chip:'CASO REAL · EP. 01',t:'A venda caiu no <em>financiamento</em>',s:'Veja o que faltou conferir.'},
+  ep02:{k:'Herdou a dívida ✕',kx:470,ky:720,chip:'CASO REAL · EP. 02',t:'O comprador herdou a <em>dívida</em> do condomínio',s:'Veja o que faltou pedir.'}};
+const ep=new URLSearchParams(location.search).get('ep')||'ep01',d=EPS[ep];
+document.getElementById('cena').src=`cena_${ep}.png`;
+document.getElementById('chip').textContent=d.chip;document.getElementById('t').innerHTML=d.t;
+const k=document.getElementById('k');k.textContent=d.k;k.style.left=d.kx+'px';k.style.top=d.ky+'px';
+const s=document.getElementById('s');s.textContent=d.s;
+window.READY=Promise.all([document.fonts.ready,new Promise(r=>{const i=document.getElementById('cena');i.complete?r():i.onload=i.onerror=r})]).then(()=>{
+  const h=document.getElementById('t');s.style.top=(h.offsetTop+h.offsetHeight+28)+'px';return true});
+</script>
+</body>
+</html>
