@@ -39,6 +39,8 @@ html,body{background:#000;overflow:hidden}
 .stk.red{background:var(--red2);color:#fff}.stk.gold{background:var(--gold);color:var(--navy2)}
 .stk.white{background:#fff;color:var(--navy);border-color:var(--red2)}.stk.ok{background:var(--navy2);color:var(--gold);border-color:var(--gold)}
 .stk.green{background:var(--green);color:#fff}
+/* moldura branca: o vídeo fica num painel arredondado, centralizado */
+#frame{left:22px;top:518px;width:1036px;height:1380px;border-radius:44px;box-shadow:0 0 0 1400px #fff;pointer-events:none}
 #cap{left:0;width:1080px;top:1560px;text-align:center}
 #cap span.box{position:relative;display:inline-block;background:var(--gold);color:var(--navy2);font:700 46px/1.25 Poppins;padding:8px 22px;border-radius:6px}
 #cap span.box span{position:static}
@@ -94,6 +96,7 @@ function wordStarts(id){const n=VOTXT[id].split(' ').length;return VOW[id]&&VOW[
 const stage=document.getElementById('stage');
 const cv=document.createElement('canvas');cv.width=W;cv.height=H;stage.appendChild(cv);const c=cv.getContext('2d');
 const L=document.createElement('div');L.style.cssText='left:0;top:0;width:1080px;height:1920px';stage.appendChild(L);
+const FR=document.createElement('div');FR.id='frame';stage.appendChild(FR);
 
 // ---------- desenho ----------
 const COL={navy2:'#0a1628',navy3:'#1d2c42',navy4:'#25364f',gold:'#cba236',gold2:'#d6b76d',red:'#a43b38',red2:'#d0524b',ink:'#e2e8f0',paper:'#f7f8f9',green:'#3f9b6b',facade:'#2a3c58',win:'#0e1a2c',ground:'#0c1727'};
