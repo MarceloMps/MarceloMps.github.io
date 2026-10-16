@@ -44,7 +44,7 @@ for k, (a, b) in enumerate(segs):
     else:
         sc = 'scale=1119:-2,crop=1036:1380:41:149'
     vf.append(f'[0:v]trim=start={a}:end={b},setpts=PTS-STARTPTS,{sc},setsar=1[v{k}]')
-    af.append(f'[0:a]atrim=start={a}:end={b},asetpts=PTS-STARTPTS,afade=t=in:d=.015,afade=t=out:st={max(0, b - a - .02):.3f}:d=.02[a{k}]')
+    af.append(f'[0:a]atrim=start={a}:end={b},asetpts=PTS-STARTPTS,afade=t=in:d=0.015,afade=t=out:st={max(0, b - a - .02):.3f}:d=0.02[a{k}]')
 n = len(segs)
 fc = ';'.join(vf + af) + ';' + ''.join(f'[v{k}][a{k}]' for k in range(n)) + f'concat=n={n}:v=1:a=1[v][a]'
 subprocess.run(['ffmpeg', '-nostdin', '-v', 'error', '-y', '-i', src, '-filter_complex', fc, '-map', '[v]', '-map', '[a]',
