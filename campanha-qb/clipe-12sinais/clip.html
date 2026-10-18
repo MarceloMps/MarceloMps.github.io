@@ -56,8 +56,10 @@ html,body{background:transparent;overflow:hidden}
 // =====================================================================
 const W=1080,H=1920;
 const WORDS=window.WORDS||[],DUR=+((window.CLIPDUR||80)+.9).toFixed(2);
+// junta pedaços como "e" + "-mail" que a transcrição separa
+for(let i=WORDS.length-1;i>0;i--)if(WORDS[i][2].startsWith('-')){WORDS[i-1][2]+=WORDS[i][2];WORDS[i-1][1]=WORDS[i][1];WORDS.splice(i,1)}
 // correções da transcrição automática (só no texto exibido)
-const FIX={'comprivenda?':'compra e venda?','head':'red','e-mail':'e-mail','-mail':'e-mail'};
+const FIX={'comprivenda?':'compra e venda?','head':'red'};
 const TX=w=>FIX[w]||w;
 // início da palavra pelo índice original da transcrição
 // início da n-ésima palavra que começa com o texto dado
@@ -84,7 +86,7 @@ function sticker(txt,x,y,r,kind,t,out){const el=$(`<div class="stk ${kind}" styl
 function stickers(t){for(const s of STK){const p=eo4(rp(t,s.t,s.t+.35)),o=cl(rp(t,s.t,s.t+.1))*(s.out?1-rp(t,s.out,s.out+.2):1);
   s.el.style.opacity=o;s.el.style.transform=`translate(-50%,-50%) rotate(${s.r+lerp(10,0,p)+Math.sin(t*2.6+s.t*7)*1.2}deg) scale(${lerp(.55,1,p)})`}}
 const T12=FIND('12'),TCERT=FIND('certidao'),TCONV=FIND('conversa'),TURG=FIND('urgencia'),TPAG=FIND('pagamento'),TDESN=FIND('desnecessaria'),
-  TRES=FIND('resistencia'),TCERTEZA=FIND('certeza'),TISOL=FIND('isolado'),TSOMA=FIND('soma'),TFLAG=FIND('flag'),TPDF=FIND('pdf'),TMAIL=FIND('mail'),TGRAT=FIND('gratuitamente');
+  TRES=FIND('resistencia'),TCERTEZA=FIND('certeza'),TISOL=FIND('isolado'),TSOMA=FIND('soma'),TFLAG=FIND('flag'),TPDF=FIND('pdf'),TMAIL=FIND('e-mail'),TGRAT=FIND('gratuitamente');
 sticker('Antes da certidão',760,700,5,'white',TCERT,TURG-.3);
 sticker('Está na conversa',300,780,-5,'gold',TCONV,TURG-.3);
 sticker('Já viu isso?',780,720,5,'white',TCERTEZA,TISOL-.2);
