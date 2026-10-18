@@ -40,9 +40,9 @@ open('words_cut.js', 'w').write('window.WORDS=' + json.dumps(out, ensure_ascii=F
 vf, af = [], []
 for k, (a, b) in enumerate(segs):
     if k % 2 == 0:
-        sc = 'scale=1036:-2,crop=1036:1380:0:40'
+        sc = 'scale=1036:-2,crop=1036:1380:0:40,unsharp=5:5:0.4'
     else:
-        sc = 'scale=1119:-2,crop=1036:1380:41:84'
+        sc = 'scale=1119:-2,crop=1036:1380:41:84,unsharp=5:5:0.4'
     vf.append(f'[0:v]trim=start={a}:end={b},setpts=PTS-STARTPTS,{sc},setsar=1[v{k}]')
     af.append(f'[0:a]atrim=start={a}:end={b},asetpts=PTS-STARTPTS,afade=t=in:d=0.015,afade=t=out:st={max(0, b - a - .02):.3f}:d=0.02[a{k}]')
 n = len(segs)
