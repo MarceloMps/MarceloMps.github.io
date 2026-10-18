@@ -36,7 +36,7 @@ html,body{background:transparent;overflow:hidden}
 .stk.white{background:#fff;color:var(--navy);border-color:var(--red2)}.stk.green{background:var(--green);color:#fff}
 .stk.navy{background:var(--navy2);color:var(--gold);border-color:var(--gold)}
 .sig{left:0;width:1080px;top:690px;text-align:center}
-.sig div{position:relative;display:inline-block;background:rgba(208,82,75,.18);border:2px solid var(--red2);color:#ffd0cc;border-radius:999px;padding:12px 28px;font:700 28px Poppins;letter-spacing:.06em}
+#stage .sig div{position:relative;display:inline-block;background:rgba(208,82,75,.18);border:2px solid var(--red2);color:#ffd0cc;border-radius:999px;padding:12px 28px;font:700 28px Poppins;letter-spacing:.06em}
 </style>
 </head>
 <body>
@@ -134,43 +134,43 @@ function scene(t,a){if(a<=0)return;c.save();c.globalAlpha=a;
   const g=c.createLinearGradient(0,PY,0,PY+PH);g.addColorStop(0,'#1d2a40');g.addColorStop(1,'#070f1c');c.fillStyle=g;c.fillRect(PX,PY,PW,PH);
   c.fillStyle='rgba(203,162,54,.06)';for(let x=PX;x<PX+PW;x+=60)c.fillRect(x,PY,1,PH);
   c.fillStyle=COL.ground;c.fillRect(PX,GY,PW,PY+PH-GY);c.fillStyle='rgba(203,162,54,.35)';c.fillRect(PX,GY,PW,3);
-  const s=lerp(1.04,1,eo(cl(a)));c.translate(540,1200);c.scale(s,s);c.translate(-540,-1200);
+  const s=lerp(1.04,1,eo(cl(a)))*1.25;c.translate(540,GY);c.scale(s,s);c.translate(-540,-GY);
   if(t<A1E+.5)signals(t);else soma(t);
   c.restore()}
 function signals(t){
   const b2=t>=B2&&t<B3,b3=t>=B3&&t<B4,b4=t>=B4;
   // terceiro entra pela esquerda no sinal 2
   const tp=b2?eo(rp(t,B2,B2+.6)):0;
-  if(tp>0){c.save();c.globalAlpha=tp;person(lerp(-40,150,tp),GY,250,{type:'casual',shirt:'#6a7f4a',mood:'neutral',skin:'#d9a982',hair:'#3a2a1a'});label(150,'Terceiro','#ffb3ad');c.restore()}
+  if(tp>0){c.save();c.globalAlpha=tp;person(lerp(-40,200,tp),GY,250,{type:'casual',shirt:'#6a7f4a',mood:'neutral',skin:'#d9a982',hair:'#3a2a1a'});label(200,'Terceiro','#ffb3ad');c.restore()}
   const sellerArm=(t>=B1&&t<B2)?2.6:b2?(t>B2+.8?2.2:.3):b3?2.6:.3;
-  person(360,GY,270,{type:'casual',shirt:'#7a5f8e',mood:b4?'neutral':'happy',aR:sellerArm,aL:b4?2.9:.25,skin:'#f1d0b5',hair:'#8a5a2a',long:true,flip:false});label(360,'Vendedor');
-  person(600,GY,280,{type:'suit',badge:'CORRETOR',mood:t>B4+1?'worried':'neutral',aR:b4&&t<B4+2.4?2.4:.3,skin:'#e2b48f',hair:'#1e1712',flip:true});label(600,'Corretor');
-  person(840,GY,265,{type:'casual',shirt:'#4f7a8a',mood:b2&&t>B2X?'shock':'neutral',aR:b2?1.2:.25,skin:'#c99068',flip:true});label(840,'Comprador');
+  person(390,GY,270,{type:'casual',shirt:'#7a5f8e',mood:b4?'neutral':'happy',aR:sellerArm,aL:b4?2.9:.25,skin:'#f1d0b5',hair:'#8a5a2a',long:true,flip:false});label(390,'Vendedor');
+  person(590,GY,280,{type:'suit',badge:'CORRETOR',mood:t>B4+1?'worried':'neutral',aR:b4&&t<B4+2.4?2.4:.3,skin:'#e2b48f',hair:'#1e1712',flip:true});label(590,'Corretor');
+  person(790,GY,265,{type:'casual',shirt:'#4f7a8a',mood:b2&&t>B2X?'shock':'neutral',aR:b2?1.2:.25,skin:'#c99068',flip:true});label(790,'Comprador');
   // sinal 1: relógio acelerado
-  if(t>=B1&&t<B2+.2){const a=rp(t,B1,B1+.3)*(1-rp(t,B2-.1,B2+.2));c.save();c.globalAlpha=a;clockIcon(360,1150,62,t,14);c.restore();
-    bubble(420,GY-420,'Fecha hoje, senão vendo pra outro!',rp(t,B1+.3,B1+.6)*(1-rp(t,B2-.1,B2+.1)),{ax:.25,fs:28})}
+  if(t>=B1&&t<B2+.2){const a=rp(t,B1,B1+.3)*(1-rp(t,B2-.1,B2+.2));c.save();c.globalAlpha=a;clockIcon(390,GY-470,56,t,14);c.restore();
+    bubble(430,GY-330,'Fecha hoje, senão vendo pra outro!',rp(t,B1+.3,B1+.6)*(1-rp(t,B2-.1,B2+.1)),{ax:.25,fs:28})}
   // sinal 2: pagamento para quem não é o dono
-  if(b2){bubble(400,GY-420,'Paga direto na conta dele.',rp(t,B2+.8,B2+1.1),{ax:.3,fs:28});
-    const ap=eo(rp(t,B2+1.4,B2+2.4));arrowDash(840,GY-200,170,GY-200,ap,COL.gold,t);
-    if(ap>0){const cp=rp(t,B2+1.4,B2+3.2)%1;coin(lerp(840,170,eio(cp)),GY-200-Math.sin(cp*Math.PI)*160,24)}
-    stampC(505,GY-330,'NÃO É O PROPRIETÁRIO',COL.red2,rp(t,B2X,B2X+.35),-.06)}
+  if(b2){bubble(420,GY-330,'Paga direto na conta dele.',rp(t,B2+.8,B2+1.1),{ax:.3,fs:28});
+    const ap=eo(rp(t,B2+1.4,B2+2.4));arrowDash(790,GY-200,215,GY-200,ap,COL.gold,t);
+    if(ap>0){const cp=rp(t,B2+1.4,B2+3.2)%1;coin(lerp(790,215,eio(cp)),GY-200-Math.sin(cp*Math.PI)*160,24)}
+    stampC(495,GY-260,'NÃO É O PROPRIETÁRIO',COL.red2,rp(t,B2X,B2X+.35),-.06)}
   // sinal 3: pressa sem motivo
-  if(b3){const a=rp(t,B3,B3+.3);c.save();c.globalAlpha=a;clockIcon(600,1130,74,t,22);c.restore();
-    for(let k=0;k<3;k++){const p=(t*1.6+k/3)%1;c.save();c.globalAlpha=a*(1-p);c.fillStyle=COL.paper;c.translate(760+p*120,1060-p*200);c.rotate(p*2);rr(-30,-38,60,76,6);c.fill();c.restore()}
-    bubble(380,GY-420,'Assina logo, os papéis vêm depois.',rp(t,B3+.4,B3+.7),{ax:.25,fs:28})}
+  if(b3){const a=rp(t,B3,B3+.3);c.save();c.globalAlpha=a;clockIcon(590,GY-480,62,t,22);c.restore();
+    for(let k=0;k<3;k++){const p=(t*1.6+k/3)%1;c.save();c.globalAlpha=a*(1-p);c.fillStyle=COL.paper;c.translate(700+p*110,GY-560-p*160);c.rotate(p*2);rr(-30,-38,60,76,6);c.fill();c.restore()}
+    bubble(400,GY-330,'Assina logo, os papéis vêm depois.',rp(t,B3+.4,B3+.7),{ax:.25,fs:28})}
   // sinal 4: resistência em entregar certidões
-  if(b4){bubble(620,GY-430,'Me envia as certidões?',rp(t,B4+.2,B4+.5),{ax:.5,fs:28,bg:COL.gold});
-    bubble(340,GY-430,'Depois eu mando…',rp(t,B4+1.6,B4+1.9),{ax:.4,fs:28});
-    c.save();c.globalAlpha=rp(t,B4+1.2,B4+1.6);folderLock(250,GY-150,.8);c.restore()}}
+  if(b4){bubble(610,GY-340,'Me envia as certidões?',rp(t,B4+.2,B4+.5),{ax:.5,fs:28,bg:COL.gold});
+    bubble(360,GY-340,'Depois eu mando…',rp(t,B4+1.6,B4+1.9),{ax:.4,fs:28});
+    c.save();c.globalAlpha=rp(t,B4+1.2,B4+1.6);folderLock(300,GY-150,.7);c.restore()}}
 function soma(t){
   const T0=A2,p=k=>eo(rp(t,T0+.2+k*.35,T0+.6+k*.35)),m=eio(rp(t,TFLAG-1.2,TFLAG-.2));
-  const xs=[260,540,820].map(x=>lerp(x,540,m*.55)),y=1230;
+  const xs=[300,540,780].map(x=>lerp(x,540,m*.55)),y=GY-380;
   c.save();c.globalAlpha=p(0)*(1-rp(t,TFLAG-.1,TFLAG+.3));clockIcon(xs[0],y,64,t,14);c.restore();
   c.save();c.globalAlpha=p(1)*(1-rp(t,TFLAG-.1,TFLAG+.3));coin(xs[1],y,64);c.restore();
   c.save();c.globalAlpha=p(2)*(1-rp(t,TFLAG-.1,TFLAG+.3));folderLock(xs[2],y,1.1);c.restore();
-  c.save();c.globalAlpha=Math.min(p(1),p(2))*(1-m);c.fillStyle=COL.gold;c.font='800 70px Poppins';c.textAlign='center';c.textBaseline='middle';c.fillText('+',400,y);c.fillText('+',680,y);c.restore();
-  ['Urgência','Terceiro','Resistência'].forEach((s,k)=>{c.save();c.globalAlpha=p(k)*(1-m);c.fillStyle='#c8d2e0';c.font='700 30px Poppins';c.textAlign='center';c.fillText(s,[260,540,820][k],y+120);c.restore()});
-  redFlag(470,GY,rp(t,TFLAG-.1,TFLAG+.9),t)}
+  c.save();c.globalAlpha=Math.min(p(1),p(2))*(1-m);c.fillStyle=COL.gold;c.font='800 70px Poppins';c.textAlign='center';c.textBaseline='middle';c.fillText('+',420,y);c.fillText('+',660,y);c.restore();
+  ['Urgência','Terceiro','Resistência'].forEach((s,k)=>{c.save();c.globalAlpha=p(k)*(1-m);c.fillStyle='#c8d2e0';c.font='700 30px Poppins';c.textAlign='center';c.fillText(s,[300,540,780][k],y+100);c.restore()});
+  redFlag(400,GY,rp(t,TFLAG-.1,TFLAG+.9),t)}
 
 // ---------- selos dos sinais (aparecem embaixo da legenda) ----------
 const SIG=['SINAL 1 de 12 · Urgência excessiva','SINAL 2 de 12 · Pagamento a terceiro','SINAL 3 de 12 · Pressa sem motivo','SINAL 4 de 12 · Resistência com documentos','A SOMA DOS FATORES'];
