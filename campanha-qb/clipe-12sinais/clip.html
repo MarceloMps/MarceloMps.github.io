@@ -91,7 +91,7 @@ sticker('Antes da certidão',760,700,5,'white',TCERT,TURG-.3);
 sticker('Está na conversa',300,780,-5,'gold',TCONV,TURG-.3);
 sticker('Já viu isso?',780,720,5,'white',TCERTEZA,TISOL-.2);
 sticker('Não é um sinal isolado',540,720,-3,'navy',TISOL,TPDF-.3);
-sticker('RED FLAG',540,1390,-4,'red',TFLAG,TPDF-.2);
+sticker('RED FLAG',540,1470,-4,'red',TFLAG,TPDF-.2);
 sticker('Grátis ✓',300,1180,-5,'green',TGRAT,DUR);
 sticker('Link na bio',760,1440,5,'gold',TMAIL+.4,DUR);
 
@@ -102,9 +102,9 @@ const ROWS=['Urgência excessiva para fechar','Pagamento a quem não é o propri
 const list=$(`<div class="list">${ROWS.map(r=>`<div class="li"><div class="x" style="background:var(--red2)">!</div><span>${r}</span></div>`).join('')}</div>`);
 const rowT=[TURG,TPAG,TDESN,TRES];
 // soma de fatores = red flag
-const soma=$(`<div style="left:60px;width:960px;top:1200px;text-align:center">${['Urgência','Terceiro','Resistência'].map((s,i)=>`<div class="chipc">${s}</div>${i<2?'<span class="pl" style="position:relative;display:inline-block;font:800 40px Poppins;color:var(--gold);margin:0 2px">+</span>':''}`).join('')}</div>`);
+const soma=$(`<div style="left:60px;width:960px;top:1330px;text-align:center">${['Urgência','Terceiro','Resistência'].map((s,i)=>`<div class="chipc">${s}</div>${i<2?'<span class="pl" style="position:relative;display:inline-block;font:800 40px Poppins;color:var(--gold);margin:0 2px">+</span>':''}`).join('')}</div>`);
 // PDF gratuito
-const pdf=$(`<div style="left:600px;top:1000px;width:360px;height:470px;border-radius:12px;background:#f7f8f9;box-shadow:0 30px 70px rgba(0,0,0,.5);transform-origin:50% 50%">
+const pdf=$(`<div style="left:650px;top:1090px;width:360px;height:470px;border-radius:12px;background:#f7f8f9;box-shadow:0 30px 70px rgba(0,0,0,.5);transform-origin:50% 50%">
   <div style="left:0;top:0;width:360px;height:96px;border-radius:12px 12px 0 0;background:var(--red2)"></div>
   <div style="left:26px;top:28px;font:800 34px Poppins;color:#fff;letter-spacing:.06em">PDF GRÁTIS</div>
   <div style="left:26px;right:22px;top:124px;font:800 52px/1.05 Poppins;color:#0a1628">12 sinais</div>
@@ -136,7 +136,7 @@ window.seek=function(t){
   const so=win(t,TSOMA-.1,TFLAG+.1,.3);soma.style.opacity=so;
   soma.querySelectorAll('.chipc,.pl').forEach((e,i)=>{const a=TSOMA+i*.18;const p=eo4(rp(t,a,a+.3));e.style.opacity=p;e.style.transform=`scale(${lerp(.8,1,p)})`});
   // PDF
-  const po=win(t,TPDF-.1,DUR+1,.35);put(pdf,{o:po,s:lerp(.6,.8,eo4(cl(po))),r:lerp(-10,-4,eo4(cl(po)))});
+  const po=win(t,TPDF-.1,DUR+1,.35);put(pdf,{o:po,s:lerp(.55,.72,eo4(cl(po))),r:lerp(-10,-4,eo4(cl(po)))});
   const fo=rp(t,DUR-2.2,DUR-1.8);put(FOL,{o:fo,s:lerp(.85,1,eo4(fo))});
   stickers(t);CAP(t);
 };
