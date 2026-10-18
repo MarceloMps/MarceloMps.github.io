@@ -150,16 +150,16 @@ function signals(t){
   if(t>=B1&&t<B2+.2){const a=rp(t,B1,B1+.3)*(1-rp(t,B2-.1,B2+.2));c.save();c.globalAlpha=a;clockIcon(390,GY-470,56,t,14);c.restore();
     bubble(430,GY-330,'Fecha hoje, senão vendo pra outro!',rp(t,B1+.3,B1+.6)*(1-rp(t,B2-.1,B2+.1)),{ax:.25,fs:28})}
   // sinal 2: pagamento para quem não é o dono
-  if(b2){bubble(420,GY-330,'Paga direto na conta dele.',rp(t,B2+.8,B2+1.1),{ax:.3,fs:28});
+  if(b2){bubble(420,GY-330,'Paga direto na conta dele.',rp(t,B2+.8,B2+1.1)*(1-rp(t,B2X-.1,B2X+.15)),{ax:.3,fs:28});
     const ap=eo(rp(t,B2+1.4,B2+2.4));arrowDash(790,GY-200,215,GY-200,ap,COL.gold,t);
     if(ap>0){const cp=rp(t,B2+1.4,B2+3.2)%1;coin(lerp(790,215,eio(cp)),GY-200-Math.sin(cp*Math.PI)*160,24)}
-    stampC(495,GY-260,'NÃO É O PROPRIETÁRIO',COL.red2,rp(t,B2X,B2X+.35),-.06)}
+    stampC(495,GY-380,'NÃO É O PROPRIETÁRIO',COL.red2,rp(t,B2X,B2X+.35),-.06)}
   // sinal 3: pressa sem motivo
   if(b3){const a=rp(t,B3,B3+.3);c.save();c.globalAlpha=a;clockIcon(590,GY-480,62,t,22);c.restore();
     for(let k=0;k<3;k++){const p=(t*1.6+k/3)%1;c.save();c.globalAlpha=a*(1-p);c.fillStyle=COL.paper;c.translate(700+p*110,GY-560-p*160);c.rotate(p*2);rr(-30,-38,60,76,6);c.fill();c.restore()}
     bubble(400,GY-330,'Assina logo, os papéis vêm depois.',rp(t,B3+.4,B3+.7),{ax:.25,fs:28})}
   // sinal 4: resistência em entregar certidões
-  if(b4){bubble(610,GY-340,'Me envia as certidões?',rp(t,B4+.2,B4+.5),{ax:.5,fs:28,bg:COL.gold});
+  if(b4){bubble(610,GY-340,'Me envia as certidões?',rp(t,B4+.2,B4+.5)*(1-rp(t,B4+1.45,B4+1.65)),{ax:.5,fs:28,bg:COL.gold});
     bubble(360,GY-340,'Depois eu mando…',rp(t,B4+1.6,B4+1.9),{ax:.4,fs:28});
     c.save();c.globalAlpha=rp(t,B4+1.2,B4+1.6);folderLock(300,GY-150,.7);c.restore()}}
 function soma(t){
