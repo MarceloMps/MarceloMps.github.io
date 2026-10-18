@@ -11,7 +11,7 @@ while read -r n id; do
   [ -s "takes/p_$n.mp4" ] && continue
   curl -sSL -o "takes/raw_$n.mov" "https://drive.usercontent.google.com/download?id=$id&export=download&confirm=t" || { echo "falhou $n"; continue; }
   tr=$(ffprobe -v error -select_streams v:0 -show_entries stream=color_transfer -of csv=p=0 "takes/raw_$n.mov")
-  if [ "$tr" = "arib-std-b67" ] || [ "$tr" = "smpte2084" ]; then vf="$TM,scale=1080:-2"; else vf="scale=1080:-2"; fi
+  case "$tr" in *arib-std-b67*|*smpte2084*) vf="$TM,scale=1080:-2" ;; *) vf="scale=1080:-2" ;; esac
   ffmpeg -nostdin -v error -y -i "takes/raw_$n.mov" -vf "$vf" -r 30 -c:v libx264 -crf 15 -preset fast \
     -color_primaries bt709 -color_trc bt709 -colorspace bt709 -c:a aac -b:a 192k "takes/p_$n.mp4" && rm "takes/raw_$n.mov"
   echo "ok $n ($tr)"
