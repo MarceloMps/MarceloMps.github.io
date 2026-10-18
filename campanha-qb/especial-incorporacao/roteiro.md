@@ -1,7 +1,8 @@
 # Especial: empreendimento vendido sem registro de incorporação
 
-Formato: a advogada fala para a câmera (9:16) e a edição entra por cima com
-o cabeçalho branco da série, legendas, cartões e destaques. Cerca de 85 s.
+Formato híbrido (ver ../PADRAO_HIBRIDO.md): a advogada fala para a câmera e os
+trechos marcados com [CENA ANIMADA] viram cena com os bonequinhos, com a voz
+dela por cima. Cerca de 85 s.
 Os textos entre colchetes são marcações de edição; ela não lê.
 
 ## Gancho
@@ -10,12 +11,12 @@ Os textos entre colchetes são marcações de edição; ela não lê.
 2. E isso costuma aparecer com nome bonito: pré-lançamento, reserva, lista VIP.
    [TELA: três etiquetas surgindo: "PRÉ-LANÇAMENTO", "RESERVA", "LISTA VIP"]
 
-## O problema
+## O problema  [itens 3–4 em CENA ANIMADA: terreno → registro no cartório → unidades à venda]
 3. A regra é clara: o incorporador só pode vender as unidades depois de registrar a incorporação no Registro de Imóveis.
    [TELA: "Lei 4.591/64, art. 32"]
 4. Esse registro reúne o título do terreno, as certidões, o projeto aprovado na prefeitura e o memorial do empreendimento.
    [TELA: checklist com 4 itens marcando]
-## Os riscos
+## Os riscos  [CENA ANIMADA: comprador pagando, prédio que não sai do papel, banco recusando, fila de credores]
 5. Sem ele, o comprador paga por algo que pode nunca sair do papel.
    [TELA: prédio se desfazendo]
 6. A unidade dele não existe na matrícula: o contrato não tem onde ser registrado. Dificilmente um banco financia.
