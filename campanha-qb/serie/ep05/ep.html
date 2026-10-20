@@ -115,7 +115,7 @@ function person(x,fy,h,o={}){const s=h/160;c.save();c.translate(x,fy-(o.bob||0))
   c.fillStyle='#0b1220';rr(-20-st*10,-6,18,8,4);c.fill();rr(2+st*10,-6,18,8,4);c.fill();
   c.fillStyle=shirt;rr(-22,-120,44,64,14);c.fill();
   if(type==='suit'){c.fillStyle='#f3f5f8';c.beginPath();c.moveTo(-9,-120);c.lineTo(9,-120);c.lineTo(0,-92);c.fill();c.fillStyle=COL.red2;c.beginPath();c.moveTo(-3,-116);c.lineTo(3,-116);c.lineTo(4,-90);c.lineTo(0,-84);c.lineTo(-4,-90);c.fill()}
-  if(o.badge){c.fillStyle=COL.gold;rr(-20,-74,40,13,3);c.fill();c.save();if(o.flip)c.scale(-1,1);c.fillStyle=COL.navy2;c.font='800 9px Poppins';c.textAlign='center';c.fillText(o.badge,0,-64.5);c.restore()}
+  if(o.badge){c.fillStyle=COL.gold;rr(-25,-74,50,13,3);c.fill();c.save();if(o.flip)c.scale(-1,1);c.fillStyle=COL.navy2;c.font='800 8.5px Poppins';c.textAlign='center';c.fillText(o.badge,0,-64.5);c.restore()}
   const arm=(sx,a,side)=>{const ex=sx+side*Math.sin(a)*50,ey=-112+Math.cos(a)*50;c.strokeStyle=shirt;c.lineWidth=11;line(sx,-112,ex,ey);c.fillStyle=skin;circ(ex,ey,7);return[ex,ey]};
   arm(-19,o.aL??.18,-1);const hr=arm(19,o.aR??.18,1);
   if(o.paper){c.save();c.translate(hr[0],hr[1]);c.rotate(-.2);c.fillStyle=COL.paper;c.fillRect(-4,-26,26,34);c.fillStyle='#c5ccd6';for(let i=0;i<4;i++)c.fillRect(0,-20+i*7,18,3);if(o.paperOk){c.fillStyle=COL.green;circ(16,4,7)}c.restore()}
@@ -222,16 +222,16 @@ function sticker(txt,x,y,r,kind,t,out){const el=$(`<div class="stk ${kind}" styl
 function stickers(t){for(const s of STK){const p=eo4(rp(t,s.t,s.t+.35)),o=cl(rp(t,s.t,s.t+.1))*(s.out?1-rp(t,s.out,s.out+.2):1);
   s.el.style.opacity=o;s.el.style.transform=`translate(-50%,-50%) rotate(${s.r+lerp(10,0,p)+Math.sin(t*2.6+s.t*7)*1.2}deg) scale(${lerp(.55,1,p)})`}}
 const WB2=WS.b2,WB3=WS.b3,WB4=WS.b4,WB5=WS.b5,WC1=WS.c1;
-sticker('Intimação judicial',330,780,-5,'white',WG[7],T.a1-.2);
-sticker('Dívida do antigo dono ✕',720,1110,5,'red',WG[16],T.a1-.1);
+sticker('Intimação judicial',770,960,5,'white',WG[7],T.a1-.2);
+sticker('Dívida do antigo dono ✕',740,1150,-4,'red',WG[16],T.a1-.1);
 sticker('Imóvel conferido ✓',330,820,-5,'ok',W2[2],E('a2')+.2);
 sticker('Vendedor: não pesquisado ✕',650,960,4,'white',W2[7],E('a2')+.2);
 sticker('Sem bens para pagar ✕',700,860,5,'red',W3[15],E('a3')+.2);
-sticker('Provar a boa-fé',540,740,-4,'white',W4[10],T.r1-.2);
+sticker('Provar a boa-fé',720,990,4,'white',W4[10],T.r1-.2);
 sticker('Além da matrícula ✓',320,1170,-5,'gold',WB2[0]+.1,E('b2')+.2);
 sticker('Antes da proposta ✓',300,1180,-5,'gold',WB4[3],E('b4')+.3);
 sticker('Depois da escritura ✕',820,1160,7,'white',WB4[7],E('b4')+.3);
-sticker('Dívida quitada ✓',760,1160,6,'gold',WB5[5],T.c1-.5);
+sticker('Dívida quitada ✓',760,1160,6,'gold',WB5[5],WB5[17]-.15);
 sticker('Link na bio',780,1160,6,'gold',WS.c2.at(-3)-.1);
 
 // ---------- legendas ----------
@@ -298,8 +298,8 @@ window.seek=function(t){
   if(aA>0){c.save();c.globalAlpha=aA;street(t,1);c.restore()}
   if(aB>0&&t<T.c1+.4){c.save();c.globalAlpha=aB;street(t,2);c.restore()}
   // carimbos grandes (fora da câmera)
-  bigStamp('RISCO DE LEILÃO',COL.red2,t<T.a1-.1?rp(t,WG[13],WG[13]+.35):0,-.1,960);
-  bigStamp('FRAUDE À EXECUÇÃO',COL.red2,t>W4[3]&&t<W4[17]?rp(t,W4[3],W4[3]+.35):0,-.08,900);
+  bigStamp('RISCO DE LEILÃO',COL.red2,t<T.a1-.1?rp(t,WG[13],WG[13]+.35):0,-.08,790);
+  bigStamp('FRAUDE À EXECUÇÃO',COL.red2,t>W4[3]&&t<W4[17]?rp(t,W4[3],W4[3]+.35):0,-.06,780);
   bigStamp('ESCRITURA ASSINADA ✓',COL.green,t>WB5[17]&&t<T.c1-.3?rp(t,WB5[17],WB5[17]+.35):0,-.06,1000);
   rewind(t);
   const sA=win(t,T.a1,T.r1,.3), sB=win(t,T.b1,T.c1,.3);
