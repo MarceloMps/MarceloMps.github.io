@@ -1,4 +1,5 @@
-// Capa do especial (1080x1920). Antes: ffmpeg -ss 1 -i <painel.mp4> -frames:v 1 work/capa_frame.jpg
+// Capa do especial (1080x1920). Antes:
+//   ffmpeg -ss 1 -i <painel.mp4> -frames:v 1 -vf crop=760:1013:138:367,scale=1000:-2 work/capa_frame.jpg
 // Uso: node capa.js  →  out/capa_especial_incorporacao.jpg (fica fora do git: tem a imagem dela)
 const { chromium } = require('playwright');
 const path = require('path');
