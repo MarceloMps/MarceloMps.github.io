@@ -145,10 +145,10 @@ function crane(x,top,t,run){c.save();c.strokeStyle=COL.gold2;c.lineWidth=7;line(
   for(let y=GY;y>top;y-=40){line(x-10,y,x+10,y-40)}const sw=run?Math.sin(t*1.5)*40:0;line(x-120+sw,top+10,x-120+sw,top+120);c.fillStyle=COL.gold;c.fillRect(x-140+sw,top+120,40,26);c.restore()}
 
 // ---------- tempos (índices das palavras da transcrição) ----------
-const S1=AT(27)-.15, S1E=AT(50)+.6;      // cena 1: a propaganda existe, o prédio no papel não
+const S1=AT(27)-.15, S1E=Math.min(AT(50)+.6,AT(83)-.15);  // cena 1: a propaganda existe, o prédio no papel não
 const S2=AT(83)-.15, S2E=AT(116)-.15;    // cena 2: a regra (terreno → registro → unidades)
 const S3=AT(132)-.15, S3E=AT(189)-.15;   // cena 3: se a incorporadora quebrar
-const S4=AT(280)-.15, S4E=AT(328)+.9;    // cena 4: os 3 pontos
+const S4=AT(280)-.15, S4E=Math.min(AT(328)+.9,AT(357)-.1);  // cena 4: os 3 pontos
 const SC=[[S1,S1E],[S2,S2E],[S3,S3E],[S4,S4E]];
 const animA=t=>Math.max(...SC.map(([a,b])=>win(t,a,b,.35)));
 
@@ -159,7 +159,8 @@ function scene(t,a){if(a<=0)return;c.save();c.globalAlpha=a;
   c.fillStyle=COL.ground;c.fillRect(PX,GY,PW,PY+PH-GY);c.fillStyle='rgba(203,162,54,.35)';c.fillRect(PX,GY,PW,3);
   const s=lerp(1.04,1,eo(cl(a)))*1.15;c.translate(540,GY);c.scale(s,s);c.translate(-540,-GY);
   c.beginPath();c.rect(PX,PY,PW,PH);c.clip();
-  if(t<S1E+.6)propaganda(t);else if(t<S2E+.6)regra(t);else if(t<S3E+.6)quebra(t);
+  // na versão curta as cenas 1 e 2 ficam coladas: troca no início da seguinte
+  if(t<Math.min(S1E+.6,S2))propaganda(t);else if(t<Math.min(S2E+.6,S3))regra(t);else if(t<S3E+.6)quebra(t);
   c.restore()}
 function propaganda(t){
   const gh=eio(rp(t,AT(45),AT(47)+.3));
@@ -236,10 +237,10 @@ const sig=SIG.map(([s,k])=>{const e=$(`<div class="sig ${k}"><div>${s}</div></di
 // ---------- adesivos e cartões com ela na tela (faixa de baixo) ----------
 const STK=[];
 function sticker(txt,x,y,r,kind,t,out){const el=$(`<div class="stk ${kind}" style="left:${x}px;top:${y}px">${txt}</div>`);L.appendChild(el);STK.push({el,t,r,out})}
-function stickers(t){for(const s of STK){const p=eo4(rp(t,s.t,s.t+.35)),o=cl(rp(t,s.t,s.t+.1))*(s.out?1-rp(t,s.out,s.out+.2):1);
+function stickers(t){for(const s of STK){const p=eo4(rp(t,s.t,s.t+.35)),o=cl(rp(t,s.t,s.t+.1))*(s.out?1-rp(t,s.out,s.out+.2):1)*(1-animA(t));
   s.el.style.opacity=o;s.el.style.transform=`translate(-50%,-50%) rotate(${s.r+lerp(10,0,p)+Math.sin(t*2.6+s.t*7)*1.2}deg) scale(${lerp(.55,1,p)})`}}
-sticker('À venda ✓',300,1580,-5,'gold',AT(3),AT(13)-.1);
-sticker('Cartório não sabe ✕',720,1700,4,'red',AT(8),AT(13)-.1);
+sticker('À venda ✓',300,1580,-5,'gold',AT(3),AT(11)-.1);
+sticker('Cartório não sabe ✕',720,1700,4,'red',AT(8),AT(11)-.1);
 sticker('Corretor de imóveis',320,1580,-4,'navy',AT(53),S2-.1);
 sticker('É o seu trabalho ✓',740,1690,4,'gold',AT(66),S2-.1);
 sticker('Mas atenção ⚠',340,1780,-3,'white',AT(73),S2-.1);
@@ -289,7 +290,7 @@ window.seek=function(t){
   const a4=win(t,S4,S4E,.35);
   PTS.forEach((e,i)=>{const p=eo4(rp(t,PT_IN[i]-.1,PT_IN[i]+.35));put(e,{o:a4*cl(p*1.4),x:lerp(80,0,p)});
     const k=rp(t,PT_OK[i],PT_OK[i]+.3),ok=e.querySelector('.ok');ok.style.opacity=cl(k*2);ok.style.transform=`scale(${lerp(1.8,1,eo4(k))})`});
-  const bs=win(t,AT(16)-.05,S1-.1,.3);put(bSem,{o:bs,s:lerp(.7,1,eo4(cl(bs)))});
+  const bs=win(t,AT(11)-.05,S1-.1,.3);put(bSem,{o:bs,s:lerp(.7,1,eo4(cl(bs)))});
   const bt=win(t,AT(263)-.05,S4-.1,.3);put(b3,{o:bt,s:lerp(.7,1,eo4(cl(bt)))});
   const mo=win(t,AT(377)-.1,DUR+1,.35);put(manual,{o:mo,s:lerp(.5,.66,eo4(cl(mo))),r:lerp(-10,-4,eo4(cl(mo)))});
   const fo=rp(t,DUR-2.4,DUR-2);put(FOL,{o:fo,s:lerp(.85,1,eo4(fo))});
@@ -297,7 +298,7 @@ window.seek=function(t){
 };
 // ---------- pistas de som ----------
 function cues(){const C=[],add=(k,x,v=1)=>{if(x>=0&&x<=DUR)C.push([k,+x.toFixed(3),v])};
-  add('impact_soft',AT(0));add('stamp',AT(16),.6);
+  add('impact_soft',AT(0));add('stamp',AT(11),.6);
   SC.forEach(([a,b])=>{add('whoosh',a,.7);add('swish',b,.8)});
   [AT(28),AT(30),AT(32),AT(38),AT(41)].forEach(x=>add('pop',x,.6));add('buzz',AT(46),.5);add('stamp',AT(48));
   add('paper',AT(84));add('stamp',AT(97),.6);add('chime',AT(101),1);add('success',AT(113),.8);
