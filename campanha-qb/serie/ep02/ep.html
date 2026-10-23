@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Série QB · Ep. 2 — A dívida de condomínio herdada</title>
+<style>
+@font-face{font-family:Poppins;font-weight:400;src:url(../../fonts/poppins-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:500;src:url(../../fonts/poppins-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:600;src:url(../../fonts/poppins-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:700;src:url(../../fonts/poppins-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:800;src:url(../../fonts/poppins-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:Lora;font-weight:400;src:url(../../fonts/lora-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Lora;font-weight:400;font-style:italic;src:url(../../fonts/lora-latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:Lora;font-weight:600;src:url(../../fonts/lora-latin-600-normal.woff2) format('woff2')}
+:root{--navy:#111f34;--navy2:#0a1628;--navy3:#1d2c42;--navy4:#25364f;--gold:#cba236;--gold2:#d6b76d;--red:#a43b38;--red2:#d0524b;--green:#3f9b6b;--ink:#e2e8f0;--paper:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--navy2);font-family:Poppins,sans-serif;color:var(--ink)}
+#stage *{position:absolute}
+#stage b,#stage span,#stage br,#stage i{position:static}
+.gold{color:var(--gold)}
+/* cabeçalho estilo post */
+#hdr{left:0;top:0;width:1080px;height:520px;background:#fff;color:#111}
+#hdr .av{left:56px;top:130px;width:104px;height:104px;border-radius:50%;overflow:hidden;background:#d9b98a;border:3px solid #fff;box-shadow:0 0 0 3px var(--gold)}
+#hdr .av img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+#hdr .nm{left:184px;top:142px;font:700 36px Poppins;white-space:nowrap}
+#hdr .hd{left:184px;top:190px;font:500 28px Poppins;color:#7a7f87}
+#hdr .t1{left:56px;right:56px;top:286px;font:700 50px/1.2 Poppins;color:#0b0b0b}
+#hdr .t2{left:56px;right:56px;top:420px;font:400 40px/1.25 Poppins;color:#2b2f36}
+/* cartões */
+.paper{background:var(--paper);color:var(--navy);border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden}
+.paper .k{left:34px;right:34px;font:600 18px Poppins;letter-spacing:.2em;color:#6b7380}
+.paper .ttl{left:34px;right:34px;font:700 40px/1.12 Poppins;color:var(--navy)}
+.paper .row{left:34px;right:34px;height:64px;border-bottom:1px solid #e3e7ec;font:500 30px/64px Poppins;color:#2b3445;white-space:nowrap}
+#stage .paper .row .v{position:absolute;right:0;top:0;font-weight:700}
+.chk{display:inline-block;width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--navy2);font:800 26px/40px Poppins;text-align:center;margin-right:16px}
+.chip{border-radius:999px;font:700 26px Poppins;letter-spacing:.2em;padding:14px 30px;white-space:nowrap}
+.stk{font:800 38px/1 Poppins;padding:16px 28px 15px;border-radius:16px;border:5px solid #fff;white-space:nowrap;box-shadow:0 14px 30px rgba(0,0,0,.5);transform-origin:50% 50%}
+.stk.red{background:var(--red2);color:#fff}.stk.gold{background:var(--gold);color:var(--navy2)}
+.stk.white{background:#fff;color:var(--navy);border-color:var(--red2)}.stk.ok{background:var(--navy2);color:var(--gold);border-color:var(--gold)}
+.stk.green{background:var(--green);color:#fff}
+/* moldura branca: o vídeo fica num painel arredondado, centralizado */
+#frame{left:22px;top:518px;width:1036px;height:1380px;border-radius:44px;box-shadow:0 0 0 1400px #fff;pointer-events:none}
+#cap{left:0;width:1080px;top:1560px;text-align:center}
+#cap span.box{position:relative;display:inline-block;background:var(--gold);color:var(--navy2);font:700 46px/1.25 Poppins;padding:8px 22px;border-radius:6px}
+#cap span.box span{position:static}
+#cap .on{color:#fff;text-shadow:0 0 1px #000}
+.manual{width:420px;height:560px;border-radius:12px;background:linear-gradient(160deg,#1d2c42,#0f1b2e);border:1px solid rgba(203,162,54,.5);box-shadow:0 40px 90px rgba(0,0,0,.6)}
+.stampd{border:7px solid var(--red2);color:var(--red2);font:800 44px/1 Poppins;padding:14px 26px;border-radius:12px;letter-spacing:.06em;white-space:nowrap;background:rgba(247,248,249,.85)}
+.big{font:400 96px/1 Lora;color:#fff;text-align:center;width:1080px;left:0}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="vo_durations.js"></script>
+<script>
+// =====================================================================
+//  Série "Caso real" — Ep. 2: o comprador herdou a dívida de condomínio
+//  Composição determinística: window.seek(t). 1080x1920 (Reels/Stories)
+//  Câmera em fases com deriva, zoom no alvo e desfoque de fundo
+//  (técnicas dos blocos multi-phase-camera / coordinate-target-zoom /
+//  depth-of-field-blur do HyperFrames), entradas suaves sem overshoot.
+// =====================================================================
+const W=1080,H=1920,TOP=520,GY=1490,PCX=540,PCY=1209;
+const VOTXT={};
+`a1|O corretor vendeu um apartamento. Rápido, sem complicação.
+a2|O vendedor garantiu: condomínio em dia. E ninguém pediu prova.
+a3|A matrícula estava limpa, a escritura foi assinada e as chaves, entregues.
+a4|Um mês depois, chega a cobrança: oito meses de condomínio em atraso, com multa e juros.
+a5|E a dívida não ficou com o vendedor: dívida de condomínio acompanha o imóvel. Quem comprou, herdou.
+a6|O comprador ligou para quem? Para o corretor.
+r1|Agora, volta a fita.
+b1|A mesma venda, seguindo o roteiro do Manual de Due Diligence.
+b2|Na lista de documentos do vendedor, um item obrigatório: a declaração de quitação do condomínio, assinada pelo síndico ou pela administradora.
+b3|E a conferência de quem assina: a ata que elegeu o síndico.
+b4|A declaração aponta oito cotas em aberto. O achado aparece antes da escritura, não depois.
+b5|A proposta já sai com condição: o vendedor quita antes da assinatura, ou o valor da dívida é descontado do preço e pago direto ao condomínio.
+b6|Escritura assinada com a quitação em mãos. Chaves entregues, sem surpresa.
+c1|Não foi sorte. Foi método: saber o que pedir, de quem e em que momento.
+c2|É isso que o Manual de Due Diligence Imobiliária entrega. Link na bio.
+c3|Siga para mais casos como este.`.split('\n').forEach(l=>{const [k,v]=l.split('|');VOTXT[k]=v});
+const ORDER=['a1','a2','a3','a4','a5','a6','r1','b1','b2','b3','b4','b5','b6','c1','c2','c3'];
+const VOD=Object.assign({},...ORDER.map(k=>({[k]:VOTXT[k].split(' ').length*.36+.4})),window.VODUR||{});
+const VOW=window.VOWORDS||{};
+const GAP={a1:.4,a2:.15,a3:.15,a4:.5,a5:.15,a6:.2,r1:.5,b1:.8,b2:.2,b3:.15,b4:.2,b5:.25,b6:.25,c1:.45,c2:.2,c3:.2};
+const T={};let t0=0;ORDER.forEach(k=>{t0+=GAP[k];T[k]=t0;t0+=VOD[k]});
+const DUR=+(t0+1.8).toFixed(2), SHIFT=T.r1;
+const E=k=>T[k]+VOD[k];
+
+// ---------- utilidades ----------
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),rp=(t,a,b)=>cl((t-a)/(b-a)),lerp=(a,b,p)=>a+(b-a)*p;
+const eo=x=>1-Math.pow(1-x,3),eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2,eo4=x=>1-Math.pow(1-x,4);
+const win=(t,a,b,f=.35)=>Math.min(rp(t,a-f,a),1-rp(t,b-f*.5,b+f*.5));
+function rng(s){return()=>{s=(s*1664525+1013904223)%4294967296;return s/4294967296}}
+const $=h=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstChild};
+function put(el,{x=0,y=0,s=1,r=0,o=1}){el.style.transform=`translate(${x}px,${y}px) scale(${s}) rotate(${r}deg)`;el.style.opacity=o}
+function wordTimes(text,start,dur){const w=text.split(' '),tot=w.reduce((a,b)=>a+b.length+1,0);let acc=0;return w.map(x=>{const s=start+dur*acc/tot;acc+=x.length+1;return s})}
+function wordStarts(id){const n=VOTXT[id].split(' ').length;return VOW[id]&&VOW[id].length===n?VOW[id].map(w=>T[id]+w[0]):wordTimes(VOTXT[id],T[id],VOD[id])}
+const WS=Object.fromEntries(ORDER.map(k=>[k,wordStarts(k)]));
+// entrada de cartão: sobe e assenta (power3), sem quique
+const enter=(el,p,dy=70)=>put(el,{o:cl(p*1.4),y:lerp(dy,0,eo4(cl(p))),s:lerp(.94,1,eo4(cl(p)))});
+
+const stage=document.getElementById('stage');
+const cv=document.createElement('canvas');cv.width=W;cv.height=H;stage.appendChild(cv);const c=cv.getContext('2d');
+const L=document.createElement('div');L.style.cssText='left:0;top:0;width:1080px;height:1920px';stage.appendChild(L);
+const FR=document.createElement('div');FR.id='frame';stage.appendChild(FR);
+
+// ---------- desenho ----------
+const COL={navy2:'#0a1628',navy3:'#1d2c42',navy4:'#25364f',gold:'#cba236',gold2:'#d6b76d',red:'#a43b38',red2:'#d0524b',ink:'#e2e8f0',paper:'#f7f8f9',green:'#3f9b6b',facade:'#2a3c58',win:'#0e1a2c',ground:'#0c1727'};
+function line(x1,y1,x2,y2){c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke()}
+function circ(x,y,r){c.beginPath();c.arc(x,y,r,0,6.2832);c.fill()}
+function rr(x,y,w,h,r){c.beginPath();c.roundRect(x,y,w,h,r)}
+function person(x,fy,h,o={}){const s=h/160;c.save();c.translate(x,fy-(o.bob||0));c.scale(s*(o.flip?-1:1),s);c.lineCap='round';
+  const skin=o.skin||'#e2b48f',type=o.type||'casual',shirt=o.shirt||(type==='suit'?COL.navy4:'#5b6f8e');
+  const st=o.step||0;
+  c.strokeStyle=type==='suit'?'#18243a':'#33435e';c.lineWidth=12;line(-8,-62,-9-st*10,-2);line(8,-62,9+st*10,-2);
+  c.fillStyle='#0b1220';rr(-20-st*10,-6,18,8,4);c.fill();rr(2+st*10,-6,18,8,4);c.fill();
+  c.fillStyle=shirt;rr(-22,-120,44,64,14);c.fill();
+  if(type==='suit'){c.fillStyle='#f3f5f8';c.beginPath();c.moveTo(-9,-120);c.lineTo(9,-120);c.lineTo(0,-92);c.fill();c.fillStyle=COL.red2;c.beginPath();c.moveTo(-3,-116);c.lineTo(3,-116);c.lineTo(4,-90);c.lineTo(0,-84);c.lineTo(-4,-90);c.fill()}
+  if(o.badge){c.fillStyle=COL.gold;rr(-20,-74,40,13,3);c.fill();c.fillStyle=COL.navy2;c.font='800 9px Poppins';c.textAlign='center';c.fillText(o.badge,0,-64.5)}
+  const arm=(sx,a,side)=>{const ex=sx+side*Math.sin(a)*50,ey=-112+Math.cos(a)*50;c.strokeStyle=shirt;c.lineWidth=11;line(sx,-112,ex,ey);c.fillStyle=skin;circ(ex,ey,7);return[ex,ey]};
+  arm(-19,o.aL??.18,-1);const hr=arm(19,o.aR??.18,1);
+  if(o.paper){c.save();c.translate(hr[0],hr[1]);c.rotate(-.2);c.fillStyle=COL.paper;c.fillRect(-4,-26,26,34);c.fillStyle='#c5ccd6';for(let i=0;i<4;i++)c.fillRect(0,-20+i*7,18,3);if(o.paperOk){c.fillStyle=COL.green;circ(16,4,7)}c.restore()}
+  if(o.phone){c.save();c.translate(hr[0],hr[1]);c.fillStyle='#0b1220';rr(-7,-30,16,30,4);c.fill();c.fillStyle='#7fb3e6';c.fillRect(-4,-26,10,20);c.restore()}
+  c.fillStyle=skin;circ(0,-142,21);
+  c.fillStyle=o.hair||'#2a1c14';c.beginPath();c.arc(0,-147,21,Math.PI*1.05,Math.PI*1.95);c.fill();if(o.long){c.fillRect(-21,-150,8,34);c.fillRect(13,-150,8,34)}
+  const m=o.mood||'neutral';c.fillStyle=COL.navy2;circ(-7,-143,2.8);circ(7,-143,2.8);c.strokeStyle=COL.navy2;c.lineWidth=3;
+  if(m==='angry'){line(-13,-153,-3,-149);line(13,-153,3,-149);c.beginPath();c.arc(0,-124,7,1.15*Math.PI,1.85*Math.PI);c.stroke()}
+  else if(m==='shock'){c.beginPath();c.ellipse(0,-129,5,7,0,0,6.3);c.fill()}
+  else if(m==='worried'){line(-12,-151,-3,-155);line(12,-151,3,-155);line(-5,-130,5,-131);c.fillStyle='#7fb3e6';c.beginPath();c.moveTo(19,-158);c.quadraticCurveTo(25,-148,19,-145);c.quadraticCurveTo(13,-148,19,-158);c.fill()}
+  else if(m==='happy'){c.beginPath();c.arc(0,-136,8,.15*Math.PI,.85*Math.PI);c.stroke()}
+  else line(-5,-131,5,-131);
+  c.restore()}
+function bubble(x,y,txt,a,o={}){if(a<=0)return;const fs=o.fs||32;c.save();c.font=`700 ${fs}px Poppins`;const w=c.measureText(txt).width+40,h=fs+30,bx=x-w*(o.ax??.5),by=y-h-18,p=eo4(cl(a));
+  c.translate(x,y);c.scale(lerp(.6,1,p),lerp(.6,1,p));c.translate(-x,-y);c.globalAlpha=cl(a*3)*(o.fade??1);c.fillStyle=o.bg||'#fff';c.shadowColor='rgba(0,0,0,.4)';c.shadowBlur=16;rr(bx,by,w,h,18);c.fill();
+  c.beginPath();c.moveTo(x-12,by+h-2);c.lineTo(x,y);c.lineTo(x+14,by+h-2);c.fill();c.shadowBlur=0;c.fillStyle=o.fg||COL.navy2;c.textBaseline='middle';c.fillText(txt,bx+20,by+h/2+1);c.restore()}
+function board(cx,cy,w,h,txt,o={}){c.save();c.translate(cx,cy);c.rotate(o.r||0);
+  c.fillStyle=o.bg||COL.gold;c.shadowColor='rgba(0,0,0,.45)';c.shadowBlur=12;rr(-w/2,-h/2,w,h,8);c.fill();c.shadowBlur=0;
+  c.strokeStyle=o.bd||COL.navy2;c.lineWidth=4;rr(-w/2+5,-h/2+5,w-10,h-10,5);c.stroke();
+  let fs=h*.44;c.font=`800 ${fs}px Poppins`;const mw=c.measureText(txt).width;if(mw>w*.84){fs*=w*.84/mw;c.font=`800 ${fs}px Poppins`}
+  c.fillStyle=o.fg||COL.navy2;c.textAlign='center';c.textBaseline='middle';c.fillText(txt,0,2);c.restore()}
+// prédio: 5 andares + térreo; o apto 302 é a janela da direita do 3º andar
+const BX=330,BW=400,TH=140,FH=118,NF=5,BTOP=GY-TH-NF*FH;
+const AP={x:BX+120,y:GY-TH-2.5*FH};
+function building(t,o={}){c.save();
+  c.fillStyle=COL.facade;c.fillRect(BX-BW/2,BTOP,BW,GY-BTOP);
+  c.fillStyle='#22324c';c.fillRect(BX-70,BTOP-74,140,58);c.fillStyle=COL.navy4;c.fillRect(BX-BW/2-12,BTOP-16,BW+24,16);
+  c.fillStyle='rgba(0,0,0,.2)';for(let k=0;k<=NF;k++)c.fillRect(BX-BW/2,GY-TH-k*FH-2,BW,5);
+  const R=rng(17);
+  for(let k=1;k<=NF;k++)for(const j of[-1,0,1]){const x=BX+j*120,y=GY-TH-(k-.5)*FH,lit=R()<.3;
+    const me=k===3&&j===1;c.fillStyle=me&&o.lit?COL.gold2:lit?'rgba(214,183,109,.32)':COL.win;c.fillRect(x-39,y-36,78,70);
+    c.fillStyle='rgba(255,255,255,.06)';c.fillRect(x-39,y-36,78,6);c.fillStyle=COL.navy4;c.fillRect(x-45,y+34,90,7)}
+  // destaque do 302
+  if(o.hl>0){c.save();c.globalAlpha=o.hl;c.strokeStyle=o.hlc||COL.gold;c.lineWidth=6;c.setLineDash([14,9]);c.lineDashOffset=-t*40;c.strokeRect(AP.x-54,AP.y-50,108,100);c.setLineDash([]);
+    c.fillStyle=o.hlc||COL.gold;rr(AP.x-34,AP.y-90,68,30,8);c.fill();c.fillStyle=COL.navy2;c.font='800 20px Poppins';c.textAlign='center';c.textBaseline='middle';c.fillText('302',AP.x,AP.y-74);c.restore()}
+  // térreo e portaria
+  c.fillStyle='#1b2a40';c.fillRect(BX-BW/2,GY-TH,BW,TH);c.fillStyle='#3d5578';c.fillRect(BX-60,GY-110,120,110);c.fillStyle='rgba(127,179,230,.25)';c.fillRect(BX-52,GY-102,104,102);
+  c.fillStyle=COL.gold;c.font='700 20px Poppins';c.textAlign='center';c.fillText('PORTARIA',BX,GY-120);
+  c.restore()}
+// prédios ao fundo (camada distante, menos câmera = profundidade)
+function skyline(){c.save();c.fillStyle='#132238';
+  [[-40,520],[90,360],[640,420],[760,300],[900,460],[1040,380],[1160,330]].forEach(([x,h],i)=>{c.fillRect(x,GY-h,120+i%2*30,h);
+    c.fillStyle='rgba(214,183,109,.12)';for(let r=0;r<h/60-1;r++)for(let q=0;q<3;q++)if((r*3+q+i)%4===0)c.fillRect(x+16+q*34,GY-h+24+r*60,18,24);c.fillStyle='#132238'});c.restore()}
+function stampC(cx,cy,txt,col,p,rot){if(p<=0)return;c.save();c.translate(cx,cy);c.rotate(rot);const s=lerp(1.8,1,eo4(p));c.scale(s,s);c.globalAlpha=cl(p*1.6);
+  c.font='800 40px Poppins';const w=c.measureText(txt).width+44;c.strokeStyle=col;c.lineWidth=6;rr(-w/2,-34,w,68,10);c.stroke();c.fillStyle=col;c.textAlign='center';c.textBaseline='middle';c.fillText(txt,0,3);c.restore()}
+function ground(){c.fillStyle=COL.ground;c.fillRect(-600,GY,W+1200,H);c.fillStyle='rgba(203,162,54,.35)';c.fillRect(-600,GY,W+1200,3)}
+function key(x,y,r,a){c.save();c.translate(x,y);c.rotate(r);c.globalAlpha=a;c.strokeStyle=COL.gold;c.lineWidth=8;c.beginPath();c.arc(0,0,22,0,6.3);c.stroke();c.fillStyle=COL.gold;c.fillRect(20,-5,60,10);c.fillRect(60,0,8,20);c.fillRect(74,0,8,14);c.restore()}
+// etiqueta da dívida pendurada no 302
+function debtTag(t,a,pulse){if(a<=0)return;const sw=Math.sin(t*2.2)*.07;c.save();c.globalAlpha=a;c.translate(AP.x,AP.y+86);
+  c.strokeStyle='#c8d2e0';c.lineWidth=3;c.rotate(sw);line(0,0,0,26);c.translate(0,26);const s=1+.12*pulse;c.scale(s,s);
+  c.fillStyle=COL.red2;c.shadowColor='rgba(0,0,0,.5)';c.shadowBlur=14;rr(-78,0,156,82,12);c.fill();c.shadowBlur=0;c.fillStyle='#fff';circ(0,12,5);
+  c.font='800 26px Poppins';c.textAlign='center';c.textBaseline='middle';c.fillText('DÍVIDA',0,38);c.font='600 19px Poppins';c.fillText('8 cotas',0,64);c.restore()}
+
+// ---------- câmera em fases + deriva (aplicada à cena de rua) ----------
+const W5=WS.a5,W6=WS.a6,W3=WS.a3,W2=WS.a2,W4=WS.a4;
+const NEU=[1.1,560,1235];
+const CAMK=[[0,1.8,AP.x,AP.y+30],[.4,1.8,AP.x,AP.y+30],[T.a1+2.4,...NEU],
+  [W5[8]-.2,...NEU],[W5[8]+.7,1.3,470,1110],[W5[14]-.1,1.3,470,1110],[W5[14]+.7,1.22,740,1270],[T.r1-.1,1.22,740,1270],
+  [T.r1+.6,...NEU],[T.b6,...NEU],[T.b6+1.4,1.12,650,1250],[DUR+1,1.12,650,1250]];
+function cam(t){let i=0;while(i<CAMK.length-2&&t>CAMK[i+1][0])i++;const a=CAMK[i],b=CAMK[i+1],p=eio(rp(t,a[0],b[0]));
+  return{s:lerp(a[1],b[1],p),x:lerp(a[2],b[2],p)+Math.sin(t*.55)*7,y:lerp(a[3],b[3],p)+Math.sin(t*.55*1.3)*5}}
+function applyCam(k,depth=1){const s=1+(k.s-1)*depth,x=PCX+(k.x-PCX)*depth,y=PCY+(k.y-PCY)*depth;c.translate(PCX,PCY);c.scale(s,s);c.translate(-x,-y)}
+
+// ---------- cabeçalho ----------
+const hdr=$(`<div id="hdr"><div class="av"><img src="assets/avatar.jpg" onerror="this.remove()"><div style="left:0;top:0;width:100%;height:100%;font:800 40px/104px Poppins;text-align:center;color:#fff;z-index:-1">QB</div></div>
+  <div class="nm">Quetilin Baesso | Advocacia</div><div class="hd">@quetilinbaessoadv</div>
+  <div class="t1">Corretor: o comprador herdou a dívida de condomínio?</div>
+  <div class="t2">Veja o que faltou pedir.</div></div>`);
+stage.appendChild(hdr);
+// ---------- selos de ato ----------
+const actA=$(`<div class="chip" style="left:0;top:560px;background:rgba(208,82,75,.15);border:2px solid var(--red2);color:#ffb3ad">✕ SEM MÉTODO</div>`);
+const actB=$(`<div class="chip" style="left:0;top:560px;background:rgba(203,162,54,.15);border:2px solid var(--gold);color:var(--gold)">✓ COM O MANUAL</div>`);
+L.append(actA,actB);
+// ---------- cartões (DOM) ----------
+const cx0=w=>(W-w)/2;
+const matA=$(`<div class="paper" style="left:${cx0(620)}px;top:650px;width:620px;height:400px">
+  <div class="k" style="top:30px">REGISTRO DE IMÓVEIS</div><div class="ttl" style="top:60px">Matrícula nº 31.508</div>
+  <div class="row" style="top:140px">Penhora<span class="v" style="color:#2f7d55">nada consta ✓</span></div>
+  <div class="row" style="top:204px">Hipoteca<span class="v" style="color:#2f7d55">nada consta ✓</span></div>
+  <div class="row" style="top:268px;border:0">Indisponibilidade<span class="v" style="color:#2f7d55">nada consta ✓</span></div></div>`);
+const mes=$(`<div class="big" style="top:820px"><span style="font:700 34px Poppins;letter-spacing:.3em;color:var(--gold2)">UM MÊS DEPOIS</span><br><span style="font-size:120px">+30 dias</span></div>`);
+const bol=$(`<div class="paper" style="left:${cx0(760)}px;top:650px;width:760px;height:470px">
+  <div style="left:0;top:0;width:760px;height:14px;background:var(--red2)"></div>
+  <div class="k" style="top:40px">CONDOMÍNIO RESIDENCIAL</div><div class="ttl" style="top:70px">Aviso de cobrança</div>
+  <div class="row r0" style="top:150px">Unidade<span class="v">Apto 302</span></div>
+  <div class="row r1" style="top:214px">Cotas em atraso<span class="v" style="color:#8a2a26">8 meses</span></div>
+  <div class="row r2" style="top:278px">Encargos<span class="v" style="color:#8a2a26">multa + juros</span></div>
+  <div class="row r3" style="top:342px;border:0">Cobrado de<span class="v">proprietário atual</span></div>
+  <div class="stampd" style="left:470px;top:48px;font-size:32px;padding:10px 18px">EM ATRASO</div></div>`);
+const manual=$(`<div class="manual" style="left:${cx0(420)}px;top:640px">
+  <div style="left:40px;top:44px;font:800 26px Poppins;letter-spacing:.12em;color:#e2e8f0">QB GROUP</div>
+  <div style="left:40px;top:170px;font:600 16px Poppins;letter-spacing:.3em;color:#848d98">MATERIAL DE APOIO</div>
+  <div style="left:40px;right:30px;top:200px;font:700 42px/1.12 Poppins;color:#fff">Manual de <span class="gold">Due Diligence</span> Imobiliária</div>
+  <div style="left:40px;top:370px;width:70px;height:4px;background:var(--gold)"></div>
+  <div style="left:40px;top:394px;font:500 18px Poppins;letter-spacing:.2em;color:#848d98">8 MÓDULOS · 55 PÁGINAS</div>
+  <div style="left:40px;right:40px;bottom:30px;height:1px;background:rgba(255,255,255,.15)"></div></div>`);
+const ITEMS=['Matrícula atualizada','Certidões do vendedor','Declaração de quitação do condomínio'];
+const chk=$(`<div class="paper" style="left:${cx0(800)}px;top:650px;width:800px;height:420px">
+  <div class="k" style="top:30px">CHECKLIST · DOCUMENTOS DO VENDEDOR</div><div class="ttl" style="top:62px;font-size:36px">Antes da escritura</div>
+  ${ITEMS.map((it,i)=>`<div class="row it" style="top:${140+i*80}px;height:76px;line-height:76px;padding-left:10px;border-radius:10px"><span class="chk">✓</span>${it}</div>`).join('')}</div>`);
+const ata=$(`<div class="paper" style="left:${cx0(780)}px;top:650px;width:780px;height:420px">
+  <div class="k" style="top:30px">ATA DE ASSEMBLEIA GERAL</div><div class="ttl" style="top:62px;font-size:36px">Eleição do síndico</div>
+  <div class="row q" style="top:140px;height:76px;line-height:76px">Quem assina a declaração<span class="v">o síndico</span></div>
+  <div class="row q" style="top:220px;height:76px;line-height:76px">Eleito nesta ata<span class="v" style="color:#2f7d55">confere ✓</span></div>
+  <div class="row q" style="top:300px;height:76px;line-height:76px;border:0">Mandato<span class="v" style="color:#2f7d55">vigente ✓</span></div></div>`);
+const dec=$(`<div class="paper" style="left:${cx0(740)}px;top:650px;width:740px;height:440px">
+  <div class="k" style="top:30px">DECLARAÇÃO DE DÉBITOS CONDOMINIAIS</div><div class="ttl" style="top:62px;font-size:36px">Unidade: Apto 302</div>
+  <div class="row d0" style="top:140px;height:96px;line-height:96px;padding:0 14px;border-radius:10px">Cotas em aberto<span class="v" style="right:14px;color:#8a2a26;font-size:64px">8</span></div>
+  <div class="row d1" style="top:240px;height:76px;line-height:76px">Situação<span class="v" style="color:#8a2a26">pendente</span></div>
+  <div class="row" style="top:330px;height:76px;line-height:76px;border:0;font-size:24px;color:#6b7380">Assinatura: síndico · mandato vigente ✓</div></div>`);
+const ctr=$(`<div class="paper" style="left:${cx0(820)}px;top:630px;width:820px;height:560px">
+  <div class="k" style="top:30px">PROPOSTA DE COMPRA</div><div class="ttl" style="top:62px;font-size:36px">Cláusula 6ª — Débitos condominiais</div>
+  <div class="cl" style="left:34px;right:34px;top:140px;font:500 31px/1.5 Lora;color:#24324a"></div>
+  <div class="hlc" style="left:22px;top:130px;width:776px;height:400px;border:4px solid var(--gold);border-radius:12px;background:rgba(203,162,54,.08)"></div></div>`);
+const CLAUSE='O vendedor quitará os débitos condominiais até a escritura. Não o fazendo, o valor será retido do preço e pago diretamente ao condomínio, com quitação comprovada.';
+L.append(matA,mes,bol,manual,chk,ata,dec,ctr);
+const T1=$(`<div style="left:0;width:1080px;top:690px;text-align:center;font:400 84px/1.1 Lora;color:#fff">Não foi <i>sorte</i>.<br><span class="gold" style="font-weight:600">Foi método.</span></div>`);
+const M3=$(`<div style="left:0;width:1080px;top:960px;text-align:center">${['O que pedir','De quem','Em que momento'].map(s=>`<div class="m3" style="position:relative;display:inline-block;margin:10px 8px;padding:14px 26px;border:2px solid rgba(203,162,54,.6);border-radius:999px;font:600 32px Poppins;color:#fff">${s}</div>`).join('')}</div>`);
+const FOL=$(`<div style="left:0;width:1080px;top:1240px;text-align:center"><div style="position:relative;display:inline-block;background:#fff;color:#111;font:700 36px Poppins;padding:18px 40px;border-radius:14px">Seguir @quetilinbaessoadv</div></div>`);
+L.append(T1,M3,FOL);
+// ---------- adesivos (entrada suave, sem quique) ----------
+const STK=[];
+function sticker(txt,x,y,r,kind,t,out){const el=$(`<div class="stk ${kind}" style="left:${x}px;top:${y}px">${txt}</div>`);L.appendChild(el);STK.push({el,t,r,out})}
+function stickers(t){for(const s of STK){const p=eo4(rp(t,s.t,s.t+.35)),o=cl(rp(t,s.t,s.t+.1))*(s.out?1-rp(t,s.out,s.out+.2):1);
+  s.el.style.opacity=o;s.el.style.transform=`translate(-50%,-50%) rotate(${s.r+lerp(10,0,p)+Math.sin(t*2.6+s.t*7)*1.2}deg) scale(${lerp(.55,1,p)})`}}
+const WB2=WS.b2,WB3=WS.b3,WB4=WS.b4,WB5=WS.b5,WB6=WS.b6,WC1=WS.c1;
+sticker('Sem comprovante ✕',300,880,-6,'white',W2[7],T.a3+.3);
+sticker('Tudo limpo ✓',800,1110,6,'ok',W3[3],E('a3')+.1);
+sticker('Escritura assinada ✓',300,1130,-5,'gold',W3[7],E('a3')+.1);
+sticker('Herdou a dívida ✕',760,930,5,'red',W5[16],T.r1-.2);
+sticker('Antes da escritura ✓',320,1250,-5,'gold',WB4[10],E('b4')+.3);
+sticker('Depois ✕',830,1235,7,'white',WB4[13],E('b4')+.3);
+sticker('Quitação comprovada ✓',540,960,-4,'green',WB6[4],T.c1-.5);
+sticker('Sem surpresa ✓',790,820,6,'gold',WB6[9],T.c1-.5);
+sticker('Link na bio',780,1160,6,'gold',WS.c2.at(-3)-.1);
+
+// ---------- legendas ----------
+const cap=$(`<div id="cap"></div>`);stage.appendChild(cap);
+const CAPS=[];ORDER.forEach(id=>{const ws=WS[id],words=VOTXT[id].split(' ');let cur=[],k0=0;
+  const flush=end=>{if(!cur.length)return;CAPS.push({a:ws[k0],b:end,words:cur,wt:ws.slice(k0,k0+cur.length)});k0+=cur.length;cur=[]};
+  words.forEach((w,i)=>{cur.push(w);const len=cur.join(' ').length;if(len>=16||/[.,:?!…]$/.test(w)&&len>8)flush(i+1<words.length?ws[i+1]:E(id)+.2)});flush(E(id)+.2)});
+let last=-1;function CAP(t){const i=CAPS.findIndex(x=>t>=x.a&&t<x.b);if(i<0){cap.style.opacity=0;return}const x=CAPS[i];
+  if(i!==last){cap.innerHTML=`<span class="box">${x.words.map(w=>`<span>${w}</span>`).join(' ')}</span>`;last=i}
+  [...cap.querySelectorAll('.box span')].forEach((s,k,a)=>s.className=t>=x.wt[k]&&(k==a.length-1||t<x.wt[k+1])?'on':'');
+  cap.style.opacity=1;cap.style.transform=`scale(${lerp(.9,1,eo(cl((t-x.a)/.12)))})`}
+
+// ---------- fundo ----------
+const RP=rng(3),PTS=[...Array(50)].map(()=>({x:RP()*W,y:TOP+RP()*(H-TOP),z:.3+RP()*.7,ph:RP()*6.28}));
+function BG(t){const calm=rp(t,SHIFT,SHIFT+1.2);
+  const g=c.createRadialGradient(W/2,TOP+420,40,W/2,TOP+500,1300);g.addColorStop(0,calm>.5?'#1f2f47':'#1d2a40');g.addColorStop(1,'#070f1c');c.fillStyle=g;c.fillRect(0,TOP,W,H-TOP);
+  if(calm<1){const v=c.createRadialGradient(W/2,TOP+600,300,W/2,TOP+600,1100);v.addColorStop(0,'rgba(164,59,56,0)');v.addColorStop(1,`rgba(164,59,56,${.18*(1-calm)})`);c.fillStyle=v;c.fillRect(0,TOP,W,H-TOP)}
+  if(calm>0){const v=c.createRadialGradient(W/2,TOP+500,0,W/2,TOP+500,800);v.addColorStop(0,`rgba(203,162,54,${.10*calm})`);v.addColorStop(1,'rgba(203,162,54,0)');c.fillStyle=v;c.fillRect(0,TOP,W,H-TOP)}
+  PTS.forEach(p=>{const y=TOP+((p.y-TOP-t*14*p.z)%(H-TOP)+(H-TOP))%(H-TOP),a=(.2+.3*Math.sin(t*1.2+p.ph))*p.z;c.fillStyle=calm>.5?`rgba(214,183,109,${a})`:`rgba(226,232,240,${a*.7})`;circ(p.x+Math.sin(t*.4+p.ph)*16,y,1.2+1.6*p.z)})}
+
+// ---------- cena (atos 1 e 2) ----------
+function street(t,act){const A=act===1,k=cam(t);
+  c.save();applyCam(k,.35);skyline();c.restore();
+  c.save();applyCam(k,1);streetInner(t,A);c.restore()}
+function streetInner(t,A){
+  ground();
+  const tagA=A?rp(t,E('a4')-.3,E('a4')+.2):0, pulse=A?Math.sin(Math.PI*rp(t,W5[11],W5[11]+.6)):0;
+  const hl=A?Math.max(win(t,.2,T.a1+2.6,.3),tagA):win(t,T.b3,E('b4'),.4);
+  building(t,{hl,hlc:A&&t>T.a4?COL.red2:COL.gold,lit:!A&&t>T.b6+.6});
+  const sold=!A&&t>T.b6+.2;
+  board(AP.x,AP.y+66,150,44,sold?'VENDIDO ✓':'VENDE-SE',{bg:sold?COL.green:COL.gold,fg:sold?'#fff':COL.navy2,bd:sold?'#fff':COL.navy2,r:A&&t>T.a3?-.05:0});
+  debtTag(t,tagA,pulse);
+  if(A&&t>W5[10]){c.save();c.globalAlpha=rp(t,W5[10],W5[10]+.4);c.fillStyle=COL.red2;c.font='700 30px Poppins';c.textAlign='left';c.fillText('a dívida fica',AP.x+100,AP.y+150);c.fillText('com o imóvel',AP.x+100,AP.y+186);c.restore()}
+  // pessoas
+  const brokerMood=A?(t>W6[6]?'worried':t>T.a4?'shock':'happy'):'happy';
+  const happy=!A&&t>WB6[7];
+  const kp=A?rp(t,W3[10],W3[10]+1):rp(t,WB6[7],WB6[7]+1);
+  person(720,GY,220,{type:'suit',badge:'CORRETOR',mood:brokerMood,aR:A&&t>T.a6&&t<E('a6')+.6?2.4:happy?2.7:.3,aL:.3,
+    paper:A?t<W3[7]:t>WB6[2]&&t<WB6[7],paperOk:!A,phone:A&&t>T.a6&&t<E('a6')+.6,skin:'#e2b48f',hair:'#1e1712'});
+  // comprador
+  const angry=A&&t>T.a6, shock=A&&t>W5[14];
+  person(830,GY,210,{type:'casual',shirt:'#4f7a8a',mood:angry?'angry':shock?'shock':'happy',aR:angry?1.45+.12*Math.sin(t*12):happy?1.25:.25,aL:.25,flip:true,skin:'#c99068'});
+  // vendedor: no ato 1 vai embora quando a dívida aparece
+  const ex=A?eio(rp(t,W5[3],W5[7]+.5)):0;
+  if(ex<1){const walk=ex>0&&ex<1;c.save();c.globalAlpha=1-rp(ex,.7,1);
+    person(lerp(930,1220,ex),GY,210,{type:'casual',shirt:'#7a5f8e',mood:'happy',aR:A&&t>W2[1]&&t<E('a2')?2.5:.25,aL:.25,flip:!walk,step:walk?Math.sin(t*14)*.6:0,bob:walk?Math.abs(Math.sin(t*14))*6:0,skin:'#f1d0b5',hair:'#8a5a2a',long:true});c.restore()}
+  bubble(950,GY-250,'Condomínio em dia!',A?win(t,W2[2],E('a2')+.2,.25):0,{ax:.7,fs:30});
+  // linha da dívida até o comprador
+  if(A&&t>W5[14]){const p=eo(rp(t,W5[14],W5[14]+.7));c.save();c.strokeStyle=COL.red2;c.lineWidth=5;c.setLineDash([14,10]);c.lineDashOffset=-t*50;
+    const x1=AP.x+60,y1=AP.y+190,x2=830,y2=GY-260;c.beginPath();c.moveTo(x1,y1);c.quadraticCurveTo((x1+x2)/2+60,y1-40,lerp(x1,x2,p),lerp(y1,y2,p));c.stroke();c.restore()}
+  // telefone tocando
+  if(A&&t>T.a6&&t<E('a6')+.6){c.save();c.strokeStyle=COL.gold;c.lineWidth=4;const ph=(t*3)%1;for(let q=0;q<2;q++){c.globalAlpha=1-((ph+q*.5)%1);c.beginPath();c.arc(800,GY-232,18+((ph+q*.5)%1)*40,-.9,.9);c.stroke()}c.restore()}
+  bubble(880,GY-250,'Você não conferiu isso?',A?rp(t,W6[5],W6[5]+.3):0,{ax:.7,fs:30,bg:COL.red2,fg:'#fff'});
+  // chaves
+  if(kp>0&&kp<1)key(lerp(740,830,eio(kp)),GY-260-Math.sin(kp*Math.PI)*120,kp*6,1);
+  if(happy){const R=rng(9);for(let q=0;q<40;q++){const p=rp(t,WB6[7]+R()*.4,WB6[7]+2+R()*1.2);if(p<=0||p>=1){R();continue}c.fillStyle=q%3?COL.gold:COL.ink;c.save();c.translate(W*(.3+R()*.6)+Math.sin(t*3+q)*14,GY-600+p*600);c.rotate(t*4+q);c.fillRect(-6,-4,12,8);c.restore()}}
+}
+
+// ---------- rebobinar ----------
+function rewind(t){const p=rp(t,T.r1-.2,T.b1-.1);if(p<=0||p>=1)return;const a=Math.min(rp(t,T.r1-.2,T.r1+.2),1-rp(t,T.b1-.6,T.b1-.1));
+  c.save();c.globalAlpha=a;c.fillStyle='rgba(5,10,20,.85)';c.fillRect(0,TOP,W,H-TOP);
+  for(let k=0;k<14;k++){const y=TOP+((k*97+t*900)%(H-TOP));c.fillStyle=`rgba(226,232,240,${.05+.05*(k%3)})`;c.fillRect(0,y,W,3+(k%4)*3)}
+  c.fillStyle='#fff';c.font='800 120px Poppins';c.textAlign='center';c.fillText('◀◀',W/2,TOP+560);
+  c.font='700 52px Poppins';c.fillStyle=COL.gold;c.fillText('VOLTA A FITA',W/2,TOP+660);
+  const sec=Math.max(0,Math.round(30*(1-p)));c.font='500 34px Poppins';c.fillStyle='#c8d2e0';c.fillText(`ANTES DA ESCRITURA · ${String(sec).padStart(2,'0')}:00`,W/2,TOP+730);
+  c.restore()}
+
+// ---------- seek ----------
+window.seek=function(t){
+  c.clearRect(0,0,W,H);BG(t);
+  const aA=win(t,0.01,T.r1,.4), aB=win(t,T.b1-.1,T.c1,.4);
+  if(aA>0){c.save();c.globalAlpha=aA;street(t,1);c.restore()}
+  if(aB>0&&t<T.c1+.4){c.save();c.globalAlpha=aB;street(t,2);c.restore()}
+  rewind(t);
+  const sA=win(t,.3,T.r1,.3), sB=win(t,T.b1,T.c1,.3);
+  put(actA,{x:(W-actA.offsetWidth)/2,o:sA,y:lerp(-20,0,eo(cl(sA)))});put(actB,{x:(W-actB.offsetWidth)/2,o:sB,y:lerp(-20,0,eo(cl(sB)))});
+  // a3 matrícula
+  const m=win(t,W3[1]-.1,W3[5],.35);enter(matA,m);
+  // a4 +30 dias e aviso de cobrança
+  const ms=win(t,T.a4-.3,W4[5]-.1,.3);put(mes,{o:ms,s:lerp(.9,1,eo4(cl(ms)))});
+  const bo=win(t,W4[5],E('a4')+.1,.35);enter(bol,bo);
+  bol.querySelectorAll('.row').forEach((e,i)=>{const at=[W4[5],W4[6],W4[13],W4[13]+.5][i];e.style.opacity=lerp(.15,1,eo(rp(t,at,at+.3)))});
+  const sp=rp(t,W4[10],W4[10]+.3);const sd=bol.querySelector('.stampd');sd.style.opacity=cl(sp*1.6);sd.style.transform=`rotate(-12deg) scale(${lerp(1.8,1,eo4(sp))})`;
+  // b1 manual
+  const mn=win(t,T.b1+.2,E('b1')+.4,.35);put(manual,{o:mn,s:lerp(.85,1,eo4(cl(mn))),r:lerp(-8,-3,eo4(cl(mn)))});
+  // b2 checklist
+  const ck=win(t,T.b2+.1,E('b2')+.15,.35);enter(chk,ck);
+  const tk=[WB2[3],WB2[5],WB2[10]];
+  chk.querySelectorAll('.it').forEach((e,i)=>{const p=eo4(rp(t,tk[i]-.1,tk[i]+.25));e.querySelector('.chk').style.transform=`scale(${p})`;e.style.opacity=lerp(.25,1,cl(p*2));
+    e.style.background=i===2&&t>tk[2]?`rgba(203,162,54,${.18*rp(t,tk[2],tk[2]+.4)})`:'transparent'});
+  // b3 ata
+  const at=win(t,WB3[2]-.1,E('b3')+.05,.35);enter(ata,at);
+  const qa=[WB3[4],WB3[7],WB3[11]];ata.querySelectorAll('.q').forEach((e,i)=>e.style.opacity=lerp(.15,1,eo(rp(t,qa[i]-.1,qa[i]+.3))));
+  // b4 declaração: zoom no alvo (linha "Cotas em aberto")
+  const dc=win(t,T.b4+.35,E('b4')+.4,.35),zp=eio(rp(t,WB4[3],WB4[6]+.4));
+  put(dec,{o:cl(dc*1.4),y:lerp(70,0,eo4(cl(dc)))+lerp(0,40,zp),s:lerp(.94,1,eo4(cl(dc)))*lerp(1,1.08,zp)});
+  dec.querySelector('.d0').style.background=`rgba(208,82,75,${.14*rp(t,WB4[3],WB4[3]+.4)})`;
+  dec.querySelector('.d1').style.opacity=lerp(.15,1,eo(rp(t,WB4[5],WB4[5]+.3)));
+  // b5 cláusula
+  const ct=win(t,T.b5+.3,E('b5')+.4,.35);enter(ctr,ct);
+  const n=Math.floor(CLAUSE.length*rp(t,T.b5+.9,E('b5')-.6));ctr.querySelector('.cl').textContent=CLAUSE.slice(0,n)+(n<CLAUSE.length&&ct>0?'|':'');
+  ctr.querySelector('.hlc').style.opacity=rp(t,E('b5')-.5,E('b5')-.2);
+  // fechamento
+  const f1=win(t,T.c1,DUR+1,.4);
+  M3.querySelectorAll('.m3').forEach((e,i)=>{const a=[WC1[6],WC1[9],WC1[12]][i];const p=eo4(rp(t,a-.1,a+.3));e.style.opacity=cl(p*1.5);e.style.transform=`translateY(${lerp(24,0,p)}px) scale(${lerp(.85,1,p)})`});
+  put(M3,{o:f1*(1-rp(t,T.c2-.1,T.c2+.3))});
+  put(T1,{o:f1*(1-rp(t,T.c2-.1,T.c2+.3)),y:lerp(40,0,eo4(cl(f1)))});
+  const mf=win(t,T.c2,DUR+1,.4);if(mf>0)put(manual,{o:mf,s:lerp(.85,1,eo4(cl(mf))),r:lerp(-8,-3,eo4(cl(mf))),y:lerp(40,0,eo4(cl(mf)))});
+  const fo=rp(t,T.c3,T.c3+.4);put(FOL,{o:fo,s:lerp(.85,1,eo4(fo))});
+  // profundidade de campo: com um cartão em foco, a cena de fundo desfoca e escurece
+  const f=Math.max(m,bo,ms,mn,ck,at,dc,ct,0);cv.style.filter=f>.02?`blur(${(f*7).toFixed(2)}px) brightness(${(1-.3*f).toFixed(3)})`:'none';
+  stickers(t);CAP(t);
+};
+// ---------- pistas de som ----------
+function cues(){const C=[],add=(k,x,v=1)=>{if(x>=0&&x<=DUR)C.push([k,+x.toFixed(3),v])};
+  add('whoosh',.3,.7);add('notif',T.a1+.2);add('pop',W2[2],.6);add('buzz',W2[7],.5);
+  add('paper',W3[1]);[.0,.15,.3].forEach(d=>add('tick',W3[3]+d));add('stamp',W3[7],.6);add('click',W3[10]);
+  add('flip',T.a4-.3);add('paper',W4[5]);add('slam',W4[6],.5);add('stamp',W4[10]);add('buzz',W4[13],.6);
+  add('whoosh',W5[3],.5);add('impact',W5[11],.6);add('buzz',W5[16],.6);
+  add('alert',T.a6);add('alert',T.a6+.7);add('buzz',W6[5],.6);
+  add('riser',T.r1-.4);add('whoosh',T.r1,.8);add('impact_soft',T.b1);add('shimmer',T.b1+.3);add('paper',T.b2);
+  [WB2[3],WB2[5],WB2[10]].forEach((x,i)=>add('chime',x,i));
+  add('paper',WB3[2]);[WB3[4],WB3[7],WB3[11]].forEach(x=>add('check',x));
+  add('paper',T.b4);add('alert',WB4[3]);add('paper',T.b5+.3);
+  add('success',WB6[4]);add('click',WB6[7]);
+  add('impact_soft',T.c1);add('shimmer',T.c2);add('click',T.c3+.2);
+  for(const s of STK)add('pop',s.t+.02,.8);return C.sort((a,b)=>a[1]-b[1])}
+window.META={v:'ep02',w:W,h:H,fps:30,dur:DUR,vo:ORDER.map(k=>[k,+T[k].toFixed(3)]),cues:cues(),music_shift:SHIFT,
+  caps:CAPS.map(x=>[+x.a.toFixed(3),+x.b.toFixed(3),x.words.join(' ')]),voDur:Object.fromEntries(ORDER.map(k=>[k,VOD[k]]))};
+window.READY=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.complete?1:new Promise(r=>{i.onload=i.onerror=r}))]).then(()=>{seek(0);return true});
+</script>
+</body>
+</html>

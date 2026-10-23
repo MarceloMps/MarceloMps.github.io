@@ -1,0 +1,15 @@
+s1a|Já imaginou? O negócio cai na véspera da escritura…
+s1b|e quem é responsabilizado é você!
+s2a|Uma informação não verificada pode derrubar a negociação inteira!
+s2b|E o problema nem sempre aparece na visita: está nos registros, nos detalhes que passam despercebidos.
+s3a|Você é advogado ou corretor de imóveis?
+s3b|Não basta conduzir a negociação. É preciso saber quais riscos investigar!
+s4a|Com o Manual de Due Diligence Imobiliária, da QB Group,
+s4b|você tem o roteiro completo: o que investigar, em que ordem, e com qual documento!
+s5a|Mais critério para identificar sinais de alerta.
+s5b|Mais clareza para comunicar riscos.
+s5c|E mais valor para o seu trabalho!
+s6a|Não espere o problema aparecer!
+s6b|Garanta o Manual de Due Diligence Imobiliária. Acesse a página e saiba mais!
+c2|Manual de Due Diligence Imobiliária, da QB Group.
+c3|Garanta o seu! Acesse a página e saiba mais.
