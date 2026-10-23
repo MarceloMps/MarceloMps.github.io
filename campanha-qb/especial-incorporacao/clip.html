@@ -185,7 +185,7 @@ function propaganda(t){
     c.fillStyle=COL.green;circ(-74,-12,16);circ(74,-12,16);c.restore();
     c.save();c.font='600 26px Poppins';c.fillStyle='#c8d2e0';c.textAlign='center';c.globalAlpha*=cl(mp*2);c.fillText('Maquete',820,GY+46);c.restore()}
   person(560,GY,260,{type:'suit',badge:'CORRETOR',mood:gh>.5?'worried':'happy',flip:true,aR:t>AT(28)&&t<AT(42)?2.3:.3,skin:'#e2b48f',hair:'#1e1712'});
-  stamp(540,1250,'NÃO EXISTE NO CARTÓRIO',COL.red2,rp(t,AT(48),AT(48)+.35),-.06,44)}
+  stamp(540,1250,'NÃO EXISTE NO CARTÓRIO',COL.red2,rp(t,AT(46),AT(46)+.35),-.06,44)}
 function regra(t){
   const p1=rp(t,AT(84),AT(84)+.5),p2=rp(t,AT(95),AT(95)+.5),p3=rp(t,AT(98),AT(98)+.5);
   // 1. terreno
@@ -302,7 +302,7 @@ window.seek=function(t){
 function cues(){const C=[],add=(k,x,v=1)=>{if(x>=0&&x<=DUR)C.push([k,+x.toFixed(3),v])};
   add('impact_soft',AT(0));add('stamp',AT(11),.6);
   SC.forEach(([a,b])=>{add('whoosh',a,.7);add('swish',b,.8)});
-  [AT(28),AT(30),AT(32),AT(38),AT(41)].forEach(x=>add('pop',x,.6));add('buzz',AT(46),.5);add('stamp',AT(48));
+  [AT(28),AT(30),AT(32),AT(38),AT(41)].forEach(x=>add('pop',x,.6));add('buzz',AT(45),.5);add('stamp',AT(46));
   add('paper',AT(84));add('stamp',AT(97),.6);add('chime',AT(101),1);add('success',AT(113),.8);
   add('pop',AT(141),.5);add('impact',AT(154),.6);add('stamp',AT(154)+.05);add('stamp',AT(160),.6);add('slam',AT(171),.5);add('buzz',AT(173)+.4,.5);
   add('impact_soft',AT(263));PT_IN.forEach(x=>add('paper',x,.7));PT_OK.forEach(x=>add('check',x));
