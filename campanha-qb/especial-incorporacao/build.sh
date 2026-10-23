@@ -14,7 +14,7 @@ if [ "${1:-}" = curta ]; then
   # trechos removidos (índices das palavras): detalhes do gancho, a fala ao corretor,
   # repetições nos riscos, o bloco das infrações, a explicação dos 3 pontos,
   # "não é só papel" e partes do fechamento
-  DROP=$(python3 -c "r=[(13,26),(42,44),(50,82),(143,149),(152,157),(183,185),(189,262),(267,279),(328,356),(368,370),(381,393)];print(','.join(str(i) for a,b in r for i in range(a,b+1)))")
+  DROP=$(python3 -c "r=[(13,26),(42,44),(50,82),(143,149),(152,156),(183,185),(189,262),(267,279),(328,356),(368,370),(381,393)];print(','.join(str(i) for a,b in r for i in range(a,b+1)))")
   D=../especial-incorporacao-curta; mkdir -p $D
   cp clip.html render_clip.js cortar.py $D/; cp -r assets $D/ 2>/dev/null || true
   ln -sf ../especial-incorporacao/bruto.mp4 $D/bruto.mp4; cp words.json $D/

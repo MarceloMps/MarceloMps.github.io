@@ -62,6 +62,8 @@ for(let i=WORDS.length-1;i>0;i--)if(WORDS[i][2].startsWith('-')){WORDS[i-1][2]+=
 // correções da transcrição, pelo índice da palavra
 const FIXI={14:'tabelionato',53:'corretor',55:'imóveis,',296:'ônus',341:'aos',380:'Due Diligence'};
 const TX=w=>FIXI[w[3]]||w[2];
+// depois de um corte, a frase que começa após um ponto ganha maiúscula
+for(let i=1;i<WORDS.length;i++)if(/[.?!]$/.test(TX(WORDS[i-1]))&&!FIXI[WORDS[i][3]])WORDS[i][2]=WORDS[i][2][0].toUpperCase()+WORDS[i][2].slice(1);
 const AT=i=>{const w=WORDS.find(x=>x[3]===i);if(w)return w[0];const n=WORDS.find(x=>x[3]>i);return n?n[0]:DUR};
 const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),rp=(t,a,b)=>cl((t-a)/(b-a)),lerp=(a,b,p)=>a+(b-a)*p;
 const eo=x=>1-Math.pow(1-x,3),eo4=x=>1-Math.pow(1-x,4),eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
