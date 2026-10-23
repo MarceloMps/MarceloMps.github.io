@@ -1,0 +1,11 @@
+bruto.mp4
+work/
+out/
+assets/
+words_cut.js
+preview_*
+words.json
+words_all.json
+takes/
+*.log
+lista.txt
