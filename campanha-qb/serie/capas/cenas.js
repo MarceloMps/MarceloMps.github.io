@@ -8,7 +8,7 @@ const PRE = { ep02: 'CAMK.splice(0,CAMK.length,[0,1.05,600,1180],[999,1.05,600,1
   ep03: 'CAMK.splice(0,CAMK.length,[0,1.02,600,1150],[999,1.02,600,1150])',
   ep05: 'CAMK.splice(0,CAMK.length,[0,1.1,600,1190],[999,1.1,600,1190])',
   ep05c: 'bigStamp=function(){};CAMK.splice(0,CAMK.length,[0,1.08,600,1200],[999,1.08,600,1200])',
-  ep06: 'CAMK.splice(0,CAMK.length,[0,1.12,560,1230],[999,1.12,560,1230])' };
+  ep06: 'CAMK.splice(0,CAMK.length,[0,1.12,510,1230],[999,1.12,510,1230])' };
 (async () => {
   const b = await chromium.launch();
   for (const [ep, expr] of Object.entries(SHOTS)) {
