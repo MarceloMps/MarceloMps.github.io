@@ -304,9 +304,9 @@ window.seek=function(t){
   const xe=win(t,W3[1]-.1,W3[12]+.2,.35);enter(exe,xe);reveal(exe,t,[W3[2],W3[4],W3[9]]);stampIn(exe,t,W3[7]);
   const mn=0;
   // b2 certidões de quem vende
-  const ce=win(t,T.b2+.1,E('b2')+.15,.35);enter(cer,ce);reveal(cer,t,[WB2[10],WB2[11],WB2[13]]);
+  const ce=win(t,T.b2+.1,E('b2')-.15,.35);enter(cer,ce);reveal(cer,t,[WB2[10],WB2[11],WB2[13]]);
   // b3–b4 certidão positiva (zoom no alerta)
-  const po=win(t,T.b3,E('b3')+.35,.35),zp=eio(rp(t,WB3[3],WB3[3]+.6));
+  const po=win(t,T.b3+.3,E('b3')+.35,.35),zp=eio(rp(t,WB3[3],WB3[3]+.6));
   put(pos,{o:cl(po*1.4),y:lerp(70,0,eo4(cl(po)))+lerp(0,20,zp),s:lerp(.94,1,eo4(cl(po)))*lerp(1,1.05,zp)});
   reveal(pos,t,[WB3[1],WB3[1]+.25,WB3[1]+.5]);stampIn(pos,t,WB3[1]);
   // b5 pagamento com quitação
