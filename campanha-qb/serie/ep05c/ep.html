@@ -306,11 +306,11 @@ window.seek=function(t){
   // b2 certidões de quem vende
   const ce=win(t,T.b2+.1,E('b2')-.15,.35);enter(cer,ce);reveal(cer,t,[WB2[10],WB2[11],WB2[13]]);
   // b3–b4 certidão positiva (zoom no alerta)
-  const po=win(t,T.b3+.3,E('b3')+.35,.35),zp=eio(rp(t,WB3[3],WB3[3]+.6));
+  const po=win(t,T.b3+.3,E('b3')-.1,.35),zp=eio(rp(t,WB3[3],WB3[3]+.6));
   put(pos,{o:cl(po*1.4),y:lerp(70,0,eo4(cl(po)))+lerp(0,20,zp),s:lerp(.94,1,eo4(cl(po)))*lerp(1,1.05,zp)});
   reveal(pos,t,[WB3[1],WB3[1]+.25,WB3[1]+.5]);stampIn(pos,t,WB3[1]);
   // b5 pagamento com quitação
-  const qu=win(t,T.b5,WB5[12],.35);enter(qui,qu);reveal(qui,t,[WB5[3],WB5[7],WB5[11]]);
+  const qu=win(t,T.b5+.3,WB5[12],.35);enter(qui,qu);reveal(qui,t,[WB5[3],WB5[7],WB5[11]]);
   // fechamento
   const mf=win(t,T.c2,DUR+1,.4);put(manual,{o:mf,s:lerp(.85,1,eo4(cl(mf))),r:lerp(-8,-3,eo4(cl(mf))),y:lerp(40,0,eo4(cl(mf)))});
   const fo=rp(t,E('c2')-.2,E('c2')+.2);put(FOL,{o:fo,s:lerp(.85,1,eo4(fo))});
