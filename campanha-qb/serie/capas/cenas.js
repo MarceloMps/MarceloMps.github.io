@@ -2,11 +2,12 @@
 // Uso: node cenas.js   →  capas/cena_ep01.png, capas/cena_ep02.png
 const { chromium } = require('playwright');
 const path = require('path');
-const SHOTS = { ep01: 'T.a6+1.6', ep02: 'WS.a5[14]-0.05', ep03: 'WS.a5[11]-0.1', ep04: 'WS.a4[4]', ep05: 'WS.g1[12]' };
+const SHOTS = { ep01: 'T.a6+1.6', ep02: 'WS.a5[14]-0.05', ep03: 'WS.a5[11]-0.1', ep04: 'WS.a4[4]', ep05: 'WS.g1[12]', ep05c: 'WS.a4[5]+0.4' };
 // no ep02 a câmera fica no plano geral para caber prédio, dívida e pessoas
 const PRE = { ep02: 'CAMK.splice(0,CAMK.length,[0,1.05,600,1180],[999,1.05,600,1180])',
   ep03: 'CAMK.splice(0,CAMK.length,[0,1.02,600,1150],[999,1.02,600,1150])',
-  ep05: 'CAMK.splice(0,CAMK.length,[0,1.1,600,1190],[999,1.1,600,1190])' };
+  ep05: 'CAMK.splice(0,CAMK.length,[0,1.1,600,1190],[999,1.1,600,1190])',
+  ep05c: 'CAMK.splice(0,CAMK.length,[0,1.08,600,1200],[999,1.08,600,1200])' };
 (async () => {
   const b = await chromium.launch();
   for (const [ep, expr] of Object.entries(SHOTS)) {
