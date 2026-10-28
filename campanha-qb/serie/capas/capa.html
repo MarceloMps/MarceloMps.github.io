@@ -38,7 +38,8 @@ const EPS={
   ep03:{k:'Rateio: 12 parcelas ✕',kx:380,ky:700,chip:'CASO REAL · EP. 03',t:'A cobrança da <em>obra</em> veio depois da venda',s:'Veja o que faltou ler.'},
   ep04:{k:'',kx:0,ky:0,chip:'CASO REAL · EP. 04',t:'A venda caiu <em>dentro do cartório</em>',s:'Veja o que faltou conferir.'},
   ep05:{k:'',kx:0,ky:0,chip:'CASO REAL · EP. 05',t:'A matrícula estava limpa. A <em>dívida</em> era do vendedor.',s:'Veja o que faltou pesquisar.'},
-  ep05c:{k:'',kx:0,ky:0,chip:'CASO REAL · EP. 05 · RÁPIDO',t:'Matrícula limpa não basta. <em>Pesquise quem vende.</em>',s:'Fraude à execução em 45 segundos.'}};
+  ep05c:{k:'',kx:0,ky:0,chip:'CASO REAL · EP. 05 · RÁPIDO',t:'Matrícula limpa não basta. <em>Pesquise quem vende.</em>',s:'Fraude à execução em 45 segundos.'},
+  ep06:{k:'',kx:0,ky:0,chip:'CASO REAL · EP. 06',t:'“Essa casa <em>também</em> é minha.”',s:'Herança sem inventário: veja o que faltou conferir.'}};
 const ep=new URLSearchParams(location.search).get('ep')||'ep01',d=EPS[ep];
 document.getElementById('cena').src=`cena_${ep}.png`;
 document.getElementById('chip').textContent=d.chip;document.getElementById('t').innerHTML=d.t;
