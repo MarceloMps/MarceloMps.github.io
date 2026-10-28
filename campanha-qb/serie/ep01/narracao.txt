@@ -1,0 +1,16 @@
+a1|O corretor fechou a venda de uma casa.
+a2|Comprador animado, vendedor satisfeito, proposta assinada.
+a3|Ele conferiu a matrícula: nenhuma penhora, nenhuma hipoteca. Tudo limpo.
+a4|O comprador ia financiar. Veio a avaliação do banco…
+a5|e o financiamento foi negado: a casa tem 180 metros quadrados construídos, mas a matrícula registra só 90.
+a6|A ampliação nunca foi averbada. O negócio caiu…
+a7|e a pergunta veio para o corretor: por que ninguém viu isso antes?
+r1|Agora, volta a fita.
+b1|A mesma venda, seguindo o roteiro do Manual de Due Diligence.
+b2|Antes da proposta, a conferência física: a área da matrícula é comparada com o carnê do IPTU e com o imóvel.
+b3|A divergência aparece no primeiro dia, não na véspera.
+b4|Com o achado documentado, a proposta já sai com condição: o vendedor regulariza a averbação antes da escritura, ou o preço é ajustado.
+b5|O banco avalia a casa regularizada, o financiamento sai e a venda se concretiza.
+c1|Não foi sorte. Foi método: saber o que investigar, em que ordem e com qual documento.
+c2|É isso que o Manual de Due Diligence Imobiliária entrega. Link na bio.
+c3|Siga para mais casos como este.

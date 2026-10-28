@@ -1,0 +1,7 @@
+t1|s1a s1b
+t2|s2a s2b
+t3|s3a s3b
+t4|s4a s4b
+t5|s5a s5b s5c
+t6|s6a s6b
+t7|c2 c3

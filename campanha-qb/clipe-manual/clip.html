@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Clipe · Manual de Due Diligence (Dra. Quetilin)</title>
+<style>
+@font-face{font-family:Poppins;font-weight:500;src:url(../fonts/poppins-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:600;src:url(../fonts/poppins-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:700;src:url(../fonts/poppins-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:Poppins;font-weight:800;src:url(../fonts/poppins-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:Lora;font-weight:400;src:url(../fonts/lora-latin-400-normal.woff2) format('woff2')}
+:root{--navy:#111f34;--navy2:#0a1628;--gold:#cba236;--gold2:#d6b76d;--red2:#d0524b;--green:#3f9b6b;--paper:#f7f8f9}
+*{box-sizing:border-box;margin:0;padding:0}
+/* camada transparente: o vídeo dela é composto por baixo, no painel */
+html,body{background:transparent;overflow:hidden}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Poppins,sans-serif;color:#fff}
+#stage *{position:absolute}
+#stage b,#stage span,#stage br,#stage i{position:static}
+.gold{color:var(--gold)}
+#hdr{left:0;top:0;width:1080px;height:520px;background:#fff;color:#111}
+#hdr .av{left:56px;top:130px;width:104px;height:104px;border-radius:50%;overflow:hidden;background:#d9b98a;border:3px solid #fff;box-shadow:0 0 0 3px var(--gold)}
+#hdr .av img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+#hdr .nm{left:184px;top:142px;font:700 36px Poppins;white-space:nowrap}
+#hdr .hd{left:184px;top:190px;font:500 28px Poppins;color:#7a7f87}
+#hdr .t1{left:56px;right:56px;top:286px;font:700 50px/1.2 Poppins;color:#0b0b0b}
+#hdr .t2{left:56px;right:56px;top:420px;font:400 40px/1.25 Poppins;color:#2b2f36}
+#frame{left:22px;top:518px;width:1036px;height:1380px;border-radius:44px;box-shadow:0 0 0 1400px #fff}
+/* faixa escura suave atrás das legendas e dos cartões, para leitura sobre o vídeo */
+#shade{left:22px;top:1180px;width:1036px;height:718px;background:linear-gradient(rgba(10,22,40,0),rgba(10,22,40,.55) 45%,rgba(10,22,40,.7))}
+#cap{left:0;width:1080px;top:1640px;text-align:center}
+#cap span.box{position:relative;display:inline-block;background:var(--gold);color:var(--navy2);font:700 50px/1.25 Poppins;padding:8px 24px;border-radius:6px}
+#cap .on{color:#fff;text-shadow:0 0 1px #000}
+.stk{font:800 40px/1 Poppins;padding:16px 28px 15px;border-radius:16px;border:5px solid #fff;white-space:nowrap;box-shadow:0 14px 30px rgba(0,0,0,.45);transform-origin:50% 50%}
+.stk.red{background:var(--red2);color:#fff}.stk.gold{background:var(--gold);color:var(--navy2)}
+.stk.white{background:#fff;color:var(--navy);border-color:var(--red2)}.stk.green{background:var(--green);color:#fff}
+.stk.navy{background:var(--navy2);color:var(--gold);border-color:var(--gold)}
+.list{left:70px;width:940px;top:1250px}
+#stage .li{position:relative;display:flex;align-items:center;gap:18px;background:rgba(247,248,249,.96);color:#1b2a40;border-radius:16px;padding:14px 22px;margin-bottom:12px;box-shadow:0 12px 26px rgba(0,0,0,.35);font:600 30px/1.2 Poppins}
+#stage .li .x{position:relative;flex:0 0 46px;height:46px;border-radius:50%;background:var(--red2);color:#fff;font:800 26px/46px Poppins;text-align:center}
+#stage .li .ar{position:relative;color:#8a2a26;font-weight:800}
+#stage .chipc{position:relative;display:inline-block;margin:8px;padding:14px 26px;border-radius:999px;background:rgba(10,22,40,.92);border:2px solid var(--gold);color:#fff;font:700 32px Poppins}
+.manual{width:420px;height:560px;border-radius:12px;background:linear-gradient(160deg,#1d2c42,#0f1b2e);border:1px solid rgba(203,162,54,.6);box-shadow:0 30px 70px rgba(0,0,0,.55);transform-origin:50% 50%}
+.mod{left:70px;width:940px;top:1250px;background:rgba(247,248,249,.97);border-radius:20px;box-shadow:0 18px 40px rgba(0,0,0,.4);height:300px;color:#1b2a40}
+#stage .mod .tag{position:relative;display:inline-block;margin:8px 6px;padding:12px 24px;border-radius:999px;background:#eef1f5;border:2px solid #cfd6df;font:700 30px Poppins;color:#24324a}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="words_cut.js"></script>
+<script>
+// =====================================================================
+//  Clipe: a Dra. Quetilin apresenta o Manual de Due Diligence Imobiliária.
+//  Camada de sobreposição (fundo transparente) sincronizada com a fala:
+//  window.WORDS = [[início, fim, palavra, índice original], ...] já na
+//  linha do tempo cortada. O vídeo dela entra por baixo, no painel.
+// =====================================================================
+const W=1080,H=1920;
+const WORDS=window.WORDS||[],DUR=+((window.CLIPDUR||80)+.9).toFixed(2);
+// correções da transcrição automática (só no texto exibido)
+const FIX={'dvdor,':'devedor,','Duitiligência':'Due Diligence','minutos,':'minutas,','minutos':'minutas','checklistos':'checklists'};
+const TX=w=>FIX[w]||w;
+// início da palavra pelo índice original da transcrição
+const AT=i=>{const w=WORDS.find(x=>x[3]===i);if(w)return w[0];const n=WORDS.find(x=>x[3]>i);return n?n[0]:DUR};
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),rp=(t,a,b)=>cl((t-a)/(b-a)),lerp=(a,b,p)=>a+(b-a)*p;
+const eo=x=>1-Math.pow(1-x,3),eo4=x=>1-Math.pow(1-x,4);
+const win=(t,a,b,f=.3)=>Math.min(rp(t,a-f,a),1-rp(t,b-f*.5,b+f*.5));
+const $=h=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstChild};
+const stage=document.getElementById('stage');
+const shade=$(`<div id="shade"></div>`);stage.appendChild(shade);
+const L=document.createElement('div');L.style.cssText='left:0;top:0;width:1080px;height:1920px';stage.appendChild(L);
+const FR=$(`<div id="frame"></div>`);stage.appendChild(FR);
+const hdr=$(`<div id="hdr"><div class="av"><img src="assets/avatar.jpg" onerror="this.remove()"><div style="left:0;top:0;width:100%;height:100%;font:800 40px/104px Poppins;text-align:center;color:#fff;z-index:-1">QB</div></div>
+  <div class="nm">Quetilin Baesso | Advocacia</div><div class="hd">@quetilinbaessoadv</div>
+  <div class="t1">O prejuízo quase sempre já estava no papel.</div>
+  <div class="t2">Saiba o que perguntar antes de fechar.</div></div>`);
+stage.appendChild(hdr);
+
+// ---------- adesivos ----------
+const STK=[];
+function sticker(txt,x,y,r,kind,t,out){const el=$(`<div class="stk ${kind}" style="left:${x}px;top:${y}px">${txt}</div>`);L.appendChild(el);STK.push({el,t,r,out})}
+function stickers(t){for(const s of STK){const p=eo4(rp(t,s.t,s.t+.35)),o=cl(rp(t,s.t,s.t+.1))*(s.out?1-rp(t,s.out,s.out+.2):1);
+  s.el.style.opacity=o;s.el.style.transform=`translate(-50%,-50%) rotate(${s.r+lerp(10,0,p)+Math.sin(t*2.6+s.t*7)*1.2}deg) scale(${lerp(.55,1,p)})`}}
+sticker('Estava no papel',780,700,5,'white',AT(12),AT(33)-.2);
+sticker('Público ✓',260,660,-6,'gold',AT(15),AT(33)-.2);
+sticker('Acessível ✓',300,780,4,'gold',AT(16),AT(33)-.2);
+sticker('Saber o que perguntar',540,1360,-3,'navy',AT(69),AT(80)-.1);
+sticker('64 páginas',300,1240,-5,'gold',AT(85),AT(109)-.2);
+sticker('Material completo ✓',330,1360,4,'navy',AT(88),AT(109)-.2);
+sticker('Link na bio',540,1300,-4,'gold',AT(152),AT(158)+.6);
+sticker('Amostra grátis',330,1270,-5,'green',AT(168),DUR);
+sticker('No próximo vídeo…',730,1390,5,'white',AT(175),DUR);
+
+// ---------- cartões ----------
+const ROWS=[['Execução contra o vendedor','venda ineficaz'],['Dívida de condomínio','acompanha o imóvel'],['Área construída sem averbação','banco não financia']];
+const list=$(`<div class="list">${ROWS.map(r=>`<div class="li"><div class="x">✕</div><span>${r[0]}</span><span class="ar">→ ${r[1]}</span></div>`).join('')}</div>`);
+const rowT=[AT(34),AT(44),AT(52)];
+const manual=$(`<div class="manual" style="left:600px;top:1060px">
+  <div style="left:40px;top:44px;font:800 26px Poppins;letter-spacing:.12em;color:#e2e8f0">QB GROUP</div>
+  <div style="left:40px;top:170px;font:600 16px Poppins;letter-spacing:.3em;color:#848d98">MATERIAL DE APOIO</div>
+  <div style="left:40px;right:30px;top:200px;font:700 42px/1.12 Poppins;color:#fff">Manual de <span class="gold">Due Diligence</span> Imobiliária</div>
+  <div style="left:40px;top:370px;width:70px;height:4px;background:var(--gold)"></div></div>`);
+const chips=$(`<div style="left:60px;width:960px;top:1220px;text-align:center">${['O que investigar','Em que ordem','O que fazer com os achados'].map(s=>`<div class="chipc">${s}</div>`).join('')}</div>`);
+const chipT=[AT(115),AT(119),AT(123)];
+const mod=$(`<div class="mod">
+  <div style="left:40px;top:26px;font:800 96px/1 Poppins;color:var(--gold)">9</div>
+  <div style="left:120px;top:36px;font:700 40px/1.1 Poppins;color:#1b2a40">modelos editáveis</div>
+  <div style="left:122px;top:86px;font:600 20px Poppins;letter-spacing:.2em;color:#6b7380">PRONTOS PARA USAR</div>
+  <div class="tags" style="left:30px;right:30px;top:150px">${['Parecer','Laudo','Minutas','Checklists'].map(s=>`<div class="tag">${s}</div>`).join('')}</div></div>`);
+const tagT=[AT(138),AT(139),AT(140),AT(146)];
+const FOL=$(`<div style="left:0;width:1080px;top:1490px;text-align:center"><div style="position:relative;display:inline-block;background:#fff;color:#111;font:700 36px Poppins;padding:18px 40px;border-radius:14px;box-shadow:0 12px 26px rgba(0,0,0,.35)">Seguir @quetilinbaessoadv</div></div>`);
+L.append(list,manual,chips,mod,FOL);
+function put(el,{x=0,y=0,s=1,r=0,o=1}){el.style.transform=`translate(${x}px,${y}px) scale(${s}) rotate(${r}deg)`;el.style.opacity=o}
+
+// ---------- legendas ----------
+const cap=$(`<div id="cap"></div>`);stage.appendChild(cap);
+const CAPS=[];{let cur=[];const flush=end=>{if(!cur.length)return;CAPS.push({a:cur[0][0],b:end,w:cur});cur=[]};
+  WORDS.forEach((w,i)=>{if(cur.length&&w[0]-cur.at(-1)[1]>.5)flush(cur.at(-1)[1]+.15);cur.push(w);const len=cur.map(x=>TX(x[2])).join(' ').length;
+    if(len>=16||/[.,:?!…]$/.test(w[2])&&len>8)flush(i+1<WORDS.length?WORDS[i+1][0]:w[1]+.3)});flush(WORDS.length?WORDS.at(-1)[1]+.4:0)}
+let last=-1;function CAP(t){const i=CAPS.findIndex(x=>t>=x.a&&t<x.b);if(i<0){cap.style.opacity=0;return}const x=CAPS[i];
+  if(i!==last){cap.innerHTML=`<span class="box">${x.w.map(w=>`<span>${TX(w[2])}</span>`).join(' ')}</span>`;last=i}
+  [...cap.querySelectorAll('.box span')].forEach((s,k,a)=>s.className=t>=x.w[k][0]&&(k==a.length-1||t<x.w[k+1][0])?'on':'');
+  cap.style.opacity=1;cap.style.transform=`scale(${lerp(.9,1,eo(cl((t-x.a)/.12)))})`}
+
+// ---------- seek ----------
+window.seek=function(t){
+  // lista dos prejuízos (execução, condomínio, área)
+  const lo=win(t,rowT[0]-.1,AT(67),.3);list.style.opacity=lo;
+  list.querySelectorAll('.li').forEach((e,i)=>{const p=eo4(rp(t,rowT[i]-.1,rowT[i]+.3));e.style.opacity=p;e.style.transform=`translateX(${lerp(-60,0,p)}px)`});
+  // capa do Manual
+  const mo=win(t,AT(80)-.1,AT(109),.35);put(manual,{o:mo,s:lerp(.35,.5,eo4(cl(mo))),r:lerp(-12,-5,eo4(cl(mo)))});
+  // o que investigar / ordem / achados
+  const co=win(t,chipT[0]-.1,AT(130),.3);chips.style.opacity=co;
+  chips.querySelectorAll('.chipc').forEach((e,i)=>{const p=eo4(rp(t,chipT[i]-.1,chipT[i]+.3));e.style.opacity=p;e.style.transform=`translateY(${lerp(24,0,p)}px) scale(${lerp(.85,1,p)})`});
+  // 9 modelos editáveis
+  const md=win(t,AT(134)-.1,AT(151),.35);put(mod,{o:md,y:lerp(60,0,eo4(cl(md))),s:lerp(.94,1,eo4(cl(md)))});
+  mod.querySelectorAll('.tag').forEach((e,i)=>{const p=eo4(rp(t,tagT[i]-.1,tagT[i]+.3));e.style.opacity=lerp(.15,1,p);e.style.transform=`scale(${lerp(.85,1,p)})`});
+  const fo=rp(t,DUR-2.4,DUR-2);put(FOL,{o:fo,s:lerp(.85,1,eo4(fo))});
+  stickers(t);CAP(t);
+};
+// ---------- pistas de som ----------
+function cues(){const C=[],add=(k,x,v=1)=>{if(x>=0&&x<=DUR)C.push([k,+x.toFixed(3),v])};
+  rowT.forEach(x=>add('paper',x,.7));add('shimmer',AT(80));chipT.forEach((x,i)=>add('chime',x,i));
+  add('paper',AT(134));tagT.forEach(x=>add('check',x));add('success',AT(168));add('click',DUR-2.3);
+  for(const s of STK)add('pop',s.t+.02,.7);return C.sort((a,b)=>a[1]-b[1])}
+window.META={v:'clipe-manual',w:W,h:H,fps:30,dur:DUR,vo:[['voz',0]],cues:cues(),music_shift:AT(73),
+  caps:CAPS.map(x=>[+x.a.toFixed(3),+x.b.toFixed(3),x.w.map(w=>TX(w[2])).join(' ')])};
+window.READY=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.complete?1:new Promise(r=>{i.onload=i.onerror=r}))]).then(()=>{seek(0);return true});
+</script>
+</body>
+</html>
