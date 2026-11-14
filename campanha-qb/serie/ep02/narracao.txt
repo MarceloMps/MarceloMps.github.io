@@ -1,0 +1,16 @@
+a1|O corretor vendeu um apartamento. Rápido, sem complicação.
+a2|O vendedor garantiu: condomínio em dia. E ninguém pediu prova.
+a3|A matrícula estava limpa, a escritura foi assinada e as chaves, entregues.
+a4|Um mês depois, chega a cobrança: oito meses de condomínio em atraso, com multa e juros.
+a5|E a dívida não ficou com o vendedor: dívida de condomínio acompanha o imóvel. Quem comprou, herdou.
+a6|O comprador ligou para quem? Para o corretor.
+r1|Agora, volta a fita.
+b1|A mesma venda, seguindo o roteiro do Manual de Due Diligence.
+b2|Na lista de documentos do vendedor, um item obrigatório: a declaração de quitação do condomínio, assinada pelo síndico ou pela administradora.
+b3|E a conferência de quem assina: a ata que elegeu o síndico.
+b4|A declaração aponta oito cotas em aberto. O achado aparece antes da escritura, não depois.
+b5|A proposta já sai com condição: o vendedor quita antes da assinatura, ou o valor da dívida é descontado do preço e pago direto ao condomínio.
+b6|Escritura assinada com a quitação em mãos. Chaves entregues, sem surpresa.
+c1|Não foi sorte. Foi método: saber o que pedir, de quem e em que momento.
+c2|É isso que o Manual de Due Diligence Imobiliária entrega. Link na bio.
+c3|Siga para mais casos como este.

@@ -1,0 +1,15 @@
+a1|O corretor vendeu um apartamento, e dessa vez pediu a declaração do condomínio: nada em atraso.
+a2|Escritura assinada, chaves entregues. Tudo certo?
+a3|Dois meses depois, chega o boleto: condomínio mais uma parcela extra. E outra no mês seguinte.
+a4|Meses antes da venda, a assembleia tinha aprovado uma obra na fachada, com rateio em doze parcelas.
+a5|As parcelas vencem depois da compra, e o condomínio cobra de quem é o dono agora.
+a6|O comprador quer saber: por que ninguém avisou?
+r1|Agora, volta a fita.
+b1|A mesma venda, seguindo o roteiro do Manual de Due Diligence.
+b2|A declaração de quitação mostra o que já venceu. Para ver o que ainda vai vencer, o roteiro manda ler as atas das últimas assembleias.
+b3|Na ata, o achado: obra na fachada aprovada, rateio em doze parcelas, a maioria vencendo depois da escritura.
+b4|A proposta já sai com condição: as parcelas do rateio aprovado antes da venda ficam com o vendedor, ou são abatidas do preço.
+b5|Ninguém é pego de surpresa. O comprador sabe o que vai pagar, e a venda fecha.
+c1|Não foi sorte. Foi método: saber o que venceu, o que vai vencer e quem paga.
+c2|É isso que o Manual de Due Diligence Imobiliária entrega. Link na bio.
+c3|Siga para mais casos como este.

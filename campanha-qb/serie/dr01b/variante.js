@@ -1,0 +1,1 @@
+window.VAR='b';

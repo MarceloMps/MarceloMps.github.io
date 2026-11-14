@@ -1,0 +1,14 @@
+g1|Faltavam dez minutos para assinar a escritura… quando o tabelião disse: essa procuração não vale mais.
+a1|O vendedor mora em outro estado. Quem negociou tudo foi o filho, com uma procuração.
+a2|O corretor viu a cópia, conferiu os nomes, o imóvel… e marcou o cartório.
+a3|No dia da escritura, o tabelião pediu a certidão atualizada da procuração. E lá estava: revogada há três meses.
+a4|Escritura cancelada. O comprador, com a mudança marcada. E todo mundo olhando para o corretor.
+r1|Agora, volta a fita.
+b1|A mesma venda, seguindo o roteiro do Manual de Due Diligence.
+b2|Se quem assina é procurador, a cópia não basta: pede-se a certidão atualizada da procuração, no cartório onde ela foi feita.
+b3|E confere-se se ela dá poderes específicos para vender esse imóvel.
+b4|A revogação aparece antes da proposta, não no balcão do cartório.
+b5|O vendedor assina uma nova procuração, ou comparece ele mesmo. E a escritura sai no dia marcado.
+c1|Não foi sorte. Foi método: saber quem assina, com quais poderes, e se esses poderes ainda valem.
+c2|É isso que o Manual de Due Diligence Imobiliária entrega. Link na bio.
+c3|Siga para mais casos como este.

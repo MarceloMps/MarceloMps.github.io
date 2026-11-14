@@ -1,0 +1,14 @@
+g1|Seis meses depois da mudança, um desconhecido bateu na porta. Era filho do antigo dono. E disse: essa casa também é minha.
+a1|O dono da casa tinha morrido. Quem vendeu foram dois dos filhos, prometendo resolver a papelada depois.
+a2|O corretor viu a matrícula: casa no nome do pai. Ninguém pediu o inventário.
+a3|Só que havia um terceiro herdeiro, que nunca assinou nada. E a parte dele não foi vendida.
+a4|Sem inventário, o imóvel continua no nome de quem morreu. O comprador pagou, mas não consegue registrar a compra.
+r1|Agora, volta a fita.
+b1|A mesma venda, seguindo o roteiro do Manual de Due Diligence.
+b2|Proprietário falecido? Antes da proposta, pede-se a certidão de óbito e verifica-se o inventário: quem são os herdeiros, e se a partilha foi registrada.
+b3|Todos os herdeiros precisam participar, e os cônjuges, quando a lei exige. Sem exceção.
+b4|O inventário pode ser feito em cartório, quando todos estão de acordo. Se estiver na Justiça, a venda depende de autorização do juiz.
+b5|O terceiro irmão aparece no papel, não na porta. Ele assina, e a compra é registrada no nome do comprador.
+c1|Não foi sorte. Foi método: saber quem são os donos de verdade, antes de vender.
+c2|É isso que o Manual de Due Diligence Imobiliária entrega. Link na bio.
+c3|Siga para mais casos como este.

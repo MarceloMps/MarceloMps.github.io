@@ -1,0 +1,14 @@
+g1|Dois anos depois da compra, chegou uma intimação: o apartamento pode ir a leilão por uma dívida do antigo dono.
+a1|A venda parecia perfeita. A matrícula estava limpa: sem penhora, sem ônus.
+a2|O corretor conferiu o imóvel… mas ninguém pesquisou o vendedor.
+a3|Só que ele já respondia a uma execução de dívida. E, com a venda, ficou sem bens para pagar.
+a4|O credor alegou fraude à execução. Agora, o comprador precisa provar na Justiça que agiu de boa-fé. E a pergunta cai no corretor.
+r1|Agora, volta a fita.
+b1|A mesma venda, seguindo o roteiro do Manual de Due Diligence.
+b2|Além do imóvel, pesquisa-se quem vende: certidões dos distribuidores cível, trabalhista e federal, onde ele mora e onde fica o imóvel.
+b3|E aparece uma execução em andamento, maior do que o patrimônio que vai sobrar.
+b4|O risco aparece antes da proposta, não depois da escritura.
+b5|Parte do preço quita a dívida direto no processo, e a escritura só é assinada com a quitação comprovada.
+c1|Não foi sorte. Foi método: pesquisar o imóvel, quem vende, e fazer isso antes da proposta.
+c2|É isso que o Manual de Due Diligence Imobiliária entrega. Link na bio.
+c3|Siga para mais casos como este.
