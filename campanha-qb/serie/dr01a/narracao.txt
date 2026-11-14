@@ -1,0 +1,7 @@
+g1|Corretor: se a venda der problema, a conta pode chegar pra você.
+p1|Artigo 723 do Código Civil: o corretor responde por perdas e danos se não alertar o cliente dos riscos do negócio.
+p2|Dívida do vendedor. Herdeiro que não assinou. Obra sem registro. Nada disso aparece na visita.
+s1|O Manual de Due Diligence Imobiliária mostra o que conferir, em que ordem e com qual documento.
+s2|Roteiro em cinco fases, checklists em Excel e modelos prontos para usar.
+o1|Uma comissão vale trinta mil reais. O manual custa quarenta e sete, com sete dias de garantia.
+c1|Comenta manual aqui embaixo que eu te mando o link agora.
