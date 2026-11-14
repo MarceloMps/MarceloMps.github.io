@@ -6,7 +6,7 @@ com a narração, com ducking automático da música sob a voz.
 
 Uso: python3 audio.py <meta.json> <dir_narracao_wav> <saida.wav>
 """
-import json, sys, wave
+import json, os, sys, wave
 import numpy as np
 
 SR = 48000
@@ -409,6 +409,25 @@ def main(meta_p, vo_dir, out):
         v = process_voice(read_wav(f"{vo_dir}/{vid}.wav"))
         voice.add(v, t0, 1.0)
     mL, mR = build_music(dur, shift)
+    # trilha externa opcional (ex.: Lyria): MUSIC_A até a virada e MUSIC_B depois, no nível da trilha sintetizada
+    if os.environ.get('MUSIC_A') and os.environ.get('MUSIC_B'):
+        def st(p):
+            with wave.open(p) as w:
+                assert w.getframerate() == SR and w.getnchannels() == 2, p
+                return np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64).reshape(-1, 2) / 32768
+        A, B = st(os.environ['MUSIC_A']), st(os.environ['MUSIC_B'])
+        n0, k = len(mL), int((shift if shift else dur / 2) * SR)
+        ext = np.zeros((n0, 2))
+        fo, fi = int(.6 * SR), int(.25 * SR)
+        na = min(len(A), k + fo // 2, n0)
+        ga = np.ones(na); ga[:int(.05 * SR)] = np.linspace(0, 1, int(.05 * SR)); ga[max(0, na - fo):] *= np.linspace(1, 0, min(fo, na))
+        ext[:na] += A[:na] * ga[:, None]
+        b0 = max(0, k - fi // 2); nb = min(len(B), n0 - b0)
+        gb = np.ones(nb); gb[:fi] = np.linspace(0, 1, fi)
+        ext[b0:b0 + nb] += B[:nb] * gb[:, None]
+        ref = np.sqrt(np.mean(mL ** 2) + 1e-9); cur = np.sqrt(np.mean(ext ** 2) + 1e-9)
+        ext *= ref / cur
+        mL, mR = ext[:, 0], ext[:, 1]
     n = len(voice.L)
     mL, mR = mL[:n], mR[:n]
     # ducking da trilha sob a voz

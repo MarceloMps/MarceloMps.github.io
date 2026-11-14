@@ -1,0 +1,1 @@
+all|ga gb gc p1 p2 s1 s2 o1 c1
